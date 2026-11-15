@@ -1,0 +1,35 @@
+{
+  "name": "aiman-farhan-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "build:pages": "node scripts/build-pages.mjs",
+    "start": "next start",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@fontsource-variable/montserrat": "^5.3.0",
+    "geist": "latest",
+    "lucide-react": "latest",
+    "motion": "latest",
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "latest",
+    "@types/node": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "eslint": "latest",
+    "eslint-config-next": "latest",
+    "tailwindcss": "latest",
+    "typescript": "latest"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  }
+}
