@@ -128,7 +128,7 @@ Report-update validation: lint, TypeScript, and production build passed. Browser
 
 The homepage includes a short numeric entrance sequence, a floating navigation dock, a static star-field accent, and an original violet hanging developer card. The intro runs once per browser-tab session, has Skip/Escape controls, exits automatically, and is omitted for reduced-motion preferences. The count is an entrance-animation sequence rather than a claimed download percentage; the page remains available without JavaScript. Case-study route transitions do not replay it. Open a fresh tab to see the intro again.
 
-The card supports restrained horizontal drag with spring return, pointer tilt, and a keyboard-operable flip button. The reverse shows configured contact links; hidden-side links are excluded from keyboard navigation. Mobile vertical scrolling is retained, and reduced-motion preferences disable drag/tilt and flip transitions. No WebGL or physics dependency was added.
+The card supports two-axis pointer dragging with a gravity-driven pendulum simulation, release momentum, constrained rotation, and a connected SVG lanyard. The keyboard-operable flip button and reverse contact links remain available. Hidden-side links are excluded from keyboard navigation. Touch gestures are captured only on the badge; the surrounding page scrolls normally. Reduced motion disables physics and flip transitions. No WebGL or physics dependency was added.
 
 The card currently uses an AF monogram. To personalize it, add a portrait under `public/` and set `portfolio.portrait` in `src/data/portfolio.ts` to its path. The card layout and colors are original; no portrait, logo, card artwork, or audio was copied from the reference site.
 

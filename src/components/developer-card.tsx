@@ -2,12 +2,8 @@
 import { publicPath } from "@/lib/paths";
 
 import Image from "next/image";
-import {
-  motion,
-  useMotionValue,
-  useReducedMotion,
-  useSpring,
-} from "motion/react";
+import { useReducedMotion } from "motion/react";
+import { useCardPhysics } from "./use-card-physics";
 import {
   ArrowUpRight,
   Code2,
@@ -21,49 +17,24 @@ import { portfolio } from "@/data/portfolio";
 export function DeveloperCard() {
   const [flipped, setFlipped] = useState(false);
   const reduced = useReducedMotion();
-  const tiltX = useMotionValue(0);
-  const tiltY = useMotionValue(0);
-  const rotateX = useSpring(tiltX, { stiffness: 150, damping: 24 });
-  const rotateY = useSpring(tiltY, { stiffness: 150, damping: 24 });
+  const { areaRef, bodyRef, cordRef, hintRef } = useCardPhysics();
 
   return (
     <div className="developer-card-scene">
       <div className="card-orbit" aria-hidden="true" />
       <div className="card-orbit card-orbit-outer" aria-hidden="true" />
-      <motion.div
-        className="lanyard-assembly"
-        drag={reduced ? false : "x"}
-        dragConstraints={{ left: -35, right: 35 }}
-        dragElastic={0.12}
-        dragSnapToOrigin
-        dragTransition={{ bounceStiffness: 240, bounceDamping: 24 }}
-        style={{ touchAction: "pan-y" }}
-        onPointerMove={(event) => {
-          if (reduced || event.pointerType !== "mouse") return;
-          const rect = event.currentTarget.getBoundingClientRect();
-          tiltX.set(
-            (-(event.clientY - rect.top - rect.height / 2) / rect.height) * 9,
-          );
-          tiltY.set(
-            ((event.clientX - rect.left - rect.width / 2) / rect.width) * 12,
-          );
-        }}
-        onPointerLeave={() => {
-          tiltX.set(0);
-          tiltY.set(0);
-        }}
-      >
-        <div className="lanyard-strap" aria-hidden="true">
-          <span>
-            {portfolio.initials}. / ALWAYS BUILDING / {portfolio.initials}.
-          </span>
-        </div>
-        <div className="lanyard-clip" aria-hidden="true" />
-        <div className="lanyard-ring" aria-hidden="true" />
-        <motion.div
-          className="developer-card-tilt"
-          style={reduced ? undefined : { rotateX, rotateY }}
+      <div className="card-physics-area" ref={areaRef}>
+        <svg
+          className="physics-lanyard"
+          aria-hidden="true"
+          width="100%"
+          height="100%"
         >
+          <path ref={cordRef} className="physics-cord" />
+        </svg>
+        <div className="physics-anchor" aria-hidden="true" />
+        <div className="physics-badge" ref={bodyRef}>
+          <div className="physics-clip" aria-hidden="true" />
           <div className={`developer-card ${flipped ? "is-flipped" : ""}`}>
             <div
               className="developer-card-face developer-card-front"
@@ -71,7 +42,7 @@ export function DeveloperCard() {
             >
               <div className="badge-hole" />
               <div className="badge-topline">
-                <span>THE BUILDER PASS</span>
+                <span>AIMAN.DEV</span>
                 <Code2 size={17} />
               </div>
               <div className="badge-title">
@@ -94,7 +65,7 @@ export function DeveloperCard() {
                       <span>.</span>
                     </span>
                     <span className="portrait-caption">
-                      CURIOUS MIND. BUILDER AT HEART.
+                      DEV-001 / BUILDER PASS
                     </span>
                   </>
                 )}
@@ -106,7 +77,7 @@ export function DeveloperCard() {
                 </span>
               </div>
               <div className="badge-footer">
-                <span>FLUTTER / WEB / BACKEND</span>
+                <span>Flutter / Web / Backend</span>
                 <div className="badge-bars" aria-hidden="true" />
               </div>
             </div>
@@ -148,13 +119,11 @@ export function DeveloperCard() {
               <span className="badge-back-location">{portfolio.location}</span>
             </div>
           </div>
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
       <div className="card-interaction-bar">
-        <span>
-          {reduced
-            ? "A little more about me"
-            : "Drag a little. Get to know me."}
+        <span ref={hintRef}>
+          {reduced ? "A little more about me" : "Drag my ID card"}
         </span>
         <button
           type="button"
