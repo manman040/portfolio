@@ -130,7 +130,7 @@ The homepage includes a short numeric entrance sequence, a floating navigation d
 
 The card supports two-axis pointer dragging with a gravity-driven pendulum simulation, release momentum, constrained rotation, and a connected SVG lanyard. The keyboard-operable flip button and reverse contact links remain available. Hidden-side links are excluded from keyboard navigation. Touch gestures are captured only on the badge; the surrounding page scrolls normally. Reduced motion disables physics and flip transitions. No WebGL or physics dependency was added.
 
-The card currently uses an AF monogram. To personalize it, add a portrait under `public/` and set `portfolio.portrait` in `src/data/portfolio.ts` to its path. The card layout and colors are original; no portrait, logo, card artwork, or audio was copied from the reference site.
+The card currently uses an AF monogram. To personalize it, run `node scripts/prepare-portrait.mjs path/to/photo` (keep the original outside `public/`) and set `portfolio.portrait` in `src/data/portfolio.ts` to `"/portrait"`. The monogram remains the fallback if the image fails to load. The card layout and colors are original; no portrait, logo, card artwork, or audio was copied from the reference site.
 
 `data-scroll-behavior="smooth"` is set on the root HTML element to let Next.js manage route transitions without the missing-data-scroll-behavior warning.
 

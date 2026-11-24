@@ -1,7 +1,6 @@
 "use client";
-import { publicPath } from "@/lib/paths";
 
-import Image from "next/image";
+import { BadgePortrait } from "./badge-portrait";
 import { useReducedMotion } from "motion/react";
 import { useCardPhysics } from "./use-card-physics";
 import {
@@ -51,24 +50,7 @@ export function DeveloperCard() {
                 <span>DEVELOPER</span>
               </div>
               <div className="badge-portrait">
-                {portfolio.portrait ? (
-                  <Image
-                    src={publicPath(portfolio.portrait)}
-                    alt={`${portfolio.name} portrait`}
-                    fill
-                    sizes="300px"
-                  />
-                ) : (
-                  <>
-                    <span className="badge-monogram">
-                      {portfolio.initials}
-                      <span>.</span>
-                    </span>
-                    <span className="portrait-caption">
-                      DEV-001 / BUILDER PASS
-                    </span>
-                  </>
-                )}
+                <BadgePortrait />
               </div>
               <div className="badge-nameplate">
                 <strong>{portfolio.name}</strong>

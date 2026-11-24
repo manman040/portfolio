@@ -3,6 +3,7 @@ import { publicPath } from "@/lib/paths";
 export const portfolio = {
   name: "Aiman Farhan",
   initials: "AF",
+  // Set to "/portrait" after running: node scripts/prepare-portrait.mjs <photo>
   portrait: null as string | null,
   headline: "Software Developer | Flutter | Web & Backend Development",
   location: "Penang, Malaysia",
