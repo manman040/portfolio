@@ -62,7 +62,7 @@ docs/repository-review.md   Repository review scope and evidence
 public/                    Add résumé and real screenshots here
 ```
 
-The page and sections are Server Components. Only navigation and reveal behavior use Client Components. Native `<details>` exposes project contributions without additional JavaScript. Fonts ship through the `@fontsource-variable/montserrat` and `geist` packages and do not require build-time Google Fonts downloads. There are no backend secrets, trackers, form services, or environment variables required.
+The page and sections are Server Components. Only navigation and reveal behavior use Client Components. Native `<details>` exposes project contributions without additional JavaScript. Fonts ship through the `@fontsource-variable/montserrat` and `geist` packages and do not require build-time Google Fonts downloads. There are no backend secrets or trackers. The guestbook is the only optional external service.
 
 ## Deploy to Vercel
 
@@ -136,13 +136,17 @@ The card currently uses an AF monogram. To personalize it, run `node scripts/pre
 
 Entrance/card validation: ESLint, TypeScript, and production build passed. Headless Edge checks at 360px, 390px, 768px, and 1440px verified no horizontal overflow, hero spacing, and navigation. First-session intro, repeat-session bypass, skip, card flip, hidden-side tab stops, reduced motion, and case-study return navigation passed. Browser checks found no smooth-scroll warning or runtime errors. A mobile drag check verified no overflow during dragging, spring return, and that the reverse-side content fits without clipping.
 
-## Contact and demo guestbook
+## Contact and guestbook
 
-The bottom of the homepage includes a two-column contact area in `src/components/contact-hub.tsx`. The contact form validates name/email/message and prepares an encoded `mailto:` draft; the visitor must open their email app and send it themselves. No email service or automatic delivery is claimed.
+The contact form prepares a `mailto:` draft that the visitor sends from their own email app.
 
-As requested, the guestbook is a dummy demonstration. Its three initial entries are explicitly fictional samples. Visitors can add up to 20 comments to the current page state, select an optional JPG/PNG/WebP image (up to 5 MB / 16 megapixels), preview/remove that image, and see the local comment appear. It resets on reload and has no backend, shared storage, or public posting. Photos remain local blob URLs and are revoked when the component unmounts. Comments render as plain React text rather than HTML. Demo labels, form guidance, and submission notices communicate these limits.
+The guestbook stores comments in Supabase and is hidden until it is configured:
 
-Contact/guestbook validation: lint, TypeScript, and production build passed. Headless Edge checks passed at 360px, 390px, 768px, and 1440px for layout and overflow. Tests covered email validation and draft encoding, invalid/oversized image rejection, valid photo preview, local comment insertion, safe plain-text rendering, comment count, reset on reload, and absence of browser errors. Desktop screenshot visually reviewed.
+1. Run `supabase/guestbook.sql` once in the Supabase SQL Editor.
+2. In GitHub, add the Actions **variable** `SUPABASE_PUBLISHABLE_KEY`. For local use, copy `.env.example` to `.env.local` and fill in the key. Never use a secret or service_role key.
+3. Approve comments in Supabase's Table Editor by setting `approved` to true; delete unwanted rows.
+
+Visitors can only read approved comments and submit a name and message. The database limits submissions (20 per hour and 200 pending, site-wide) and rejects links; the form has a honeypot field. There are no photo uploads or visitor tracking, so a determined spammer could fill the hourly limit.
 
 ## GitHub Pages
 
@@ -152,7 +156,7 @@ In repository **Settings → Pages**, select **GitHub Actions** as the source. N
 
 Run `npm run build:pages` locally to generate the static site in `.next-pages/`. The helper sets `GITHUB_PAGES=true`, `NEXT_PUBLIC_BASE_PATH=/portfolio`, and `NEXT_PUBLIC_SITE_URL=https://manman040.github.io/portfolio`. The standard `npm run dev` and `npm run build` keep their normal local/server behavior. After a Pages build, run `npm run build` before using `npm start` for a server deployment.
 
-The Pages build uses static export, trailing-slash routes, and unoptimized local image delivery because GitHub Pages cannot run Next.js’s image server. `publicPath()` prefixes public assets and downloads; Next.js Link prefixes internal routes. The Open Graph image is explicitly static, and `.nojekyll` preserves underscore-named asset directories. Contact email drafts and the dummy guestbook run in the browser and do not need a server. The intro, developer card, gallery, project pages, résumé, and company logos are included.
+The Pages build uses static export, trailing-slash routes, and unoptimized local image delivery because GitHub Pages cannot run Next.js’s image server. `publicPath()` prefixes public assets and downloads; Next.js Link prefixes internal routes. The Open Graph image is explicitly static, and `.nojekyll` preserves underscore-named asset directories. Contact email drafts run in the browser; the guestbook calls Supabase directly. The intro, developer card, gallery, project pages, résumé, and company logos are included.
 
 If the repository name changes, update the base path and site URL in the Pages build helper and workflow together. A custom domain usually needs an empty base path and matching production site URL.
 

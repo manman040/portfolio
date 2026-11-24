@@ -19,6 +19,8 @@ jobs:
       GITHUB_PAGES: "true"
       NEXT_PUBLIC_BASE_PATH: /portfolio
       NEXT_PUBLIC_SITE_URL: https://manman040.github.io/portfolio
+      NEXT_PUBLIC_SUPABASE_URL: https://ihkrkqektpcwacwlgnve.supabase.co
+      NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: ${{ vars.SUPABASE_PUBLISHABLE_KEY }}
       NEXT_TELEMETRY_DISABLED: "1"
     steps:
       - name: Check out source

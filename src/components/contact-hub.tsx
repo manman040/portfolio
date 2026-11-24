@@ -1,74 +1,21 @@
 "use client";
 
-import Image from "next/image";
-import { useEffect, useRef, useState, type FormEvent } from "react";
+import { useState, type FormEvent } from "react";
 import {
   ArrowDownToLine,
   ArrowUpRight,
   Check,
-  ImagePlus,
   Mail,
-  MessageSquare,
   Send,
   User,
-  X,
 } from "lucide-react";
 import { Github, Linkedin } from "./brand-icons";
+import { Guestbook } from "./guestbook";
 import { portfolio } from "@/data/portfolio";
-
-type DemoComment = {
-  id: string;
-  name: string;
-  message: string;
-  avatar: string | null;
-  sample: boolean;
-};
-const samples: DemoComment[] = [
-  {
-    id: "sample-1",
-    name: "Demo visitor",
-    message:
-      "A sample guestbook message. Your visitors’ thoughts could appear here.",
-    avatar: null,
-    sample: true,
-  },
-  {
-    id: "sample-2",
-    name: "Sample reader",
-    message: "This is a layout preview, not a real visitor testimonial.",
-    avatar: null,
-    sample: true,
-  },
-  {
-    id: "sample-3",
-    name: "Demo developer",
-    message: "Try adding a comment below to see how the guestbook feels.",
-    avatar: null,
-    sample: true,
-  },
-];
+import { guestbookEnabled } from "@/lib/guestbook";
 
 export function ContactHub() {
   const [emailDraft, setEmailDraft] = useState<string | null>(null);
-  const [comments, setComments] = useState<DemoComment[]>(samples);
-  const [name, setName] = useState("");
-  const [message, setMessage] = useState("");
-  const [avatar, setAvatar] = useState<string | null>(null);
-  const [fileName, setFileName] = useState("");
-  const [photoError, setPhotoError] = useState("");
-  const [photoLoading, setPhotoLoading] = useState(false);
-  const [notice, setNotice] = useState("");
-  const photoInput = useRef<HTMLInputElement>(null);
-  const photoUrls = useRef(new Set<string>());
-  const alive = useRef(true);
-  useEffect(() => {
-    alive.current = true;
-    const urls = photoUrls.current;
-    return () => {
-      alive.current = false;
-      urls.forEach((url) => URL.revokeObjectURL(url));
-    };
-  }, []);
 
   function prepareEmail(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -82,73 +29,10 @@ export function ContactHub() {
     );
   }
 
-  async function selectPhoto(file: File | undefined) {
-    setPhotoError("");
-    if (!file) return;
-    if (!["image/jpeg", "image/png", "image/webp"].includes(file.type)) {
-      setPhotoError("Choose a JPG, PNG, or WebP image.");
-      return;
-    }
-    if (file.size > 5 * 1024 * 1024) {
-      setPhotoError("Choose an image smaller than 5 MB.");
-      return;
-    }
-    setPhotoLoading(true);
-    try {
-      const bitmap = await createImageBitmap(file);
-      const tooLarge = bitmap.width * bitmap.height > 16_000_000;
-      bitmap.close();
-      if (!alive.current) return;
-      if (tooLarge) {
-        setPhotoError("Choose a smaller image (up to 16 megapixels).");
-        return;
-      }
-      const url = URL.createObjectURL(file);
-      photoUrls.current.add(url);
-      setAvatar(url);
-      setFileName(file.name);
-    } catch {
-      if (alive.current)
-        setPhotoError(
-          "This image could not be read. Please choose another file.",
-        );
-    } finally {
-      if (alive.current) setPhotoLoading(false);
-    }
-  }
-
-  function addDemoComment(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    if (
-      !name.trim() ||
-      !message.trim() ||
-      photoLoading ||
-      comments.filter((comment) => !comment.sample).length >= 20
-    )
-      return;
-    setComments((current) => [
-      {
-        id: crypto.randomUUID(),
-        name: name.trim(),
-        message: message.trim(),
-        avatar,
-        sample: false,
-      },
-      ...current,
-    ]);
-    setName("");
-    setMessage("");
-    setAvatar(null);
-    setFileName("");
-    setPhotoError("");
-    if (photoInput.current) photoInput.current.value = "";
-    setNotice(
-      "Added to this preview only. Your comment is not published or saved.",
-    );
-  }
-
   return (
-    <div className="contact-hub">
+    <div
+      className={`contact-hub ${guestbookEnabled ? "" : "contact-hub-single"}`}
+    >
       <div className="card contact-form-card">
         <span className="eyebrow">START A CONVERSATION</span>
         <h3>Let’s talk.</h3>
@@ -266,142 +150,7 @@ export function ContactHub() {
           )}
         </div>
       </div>
-      <div className="card guestbook-card">
-        <div className="guestbook-heading">
-          <span className="guestbook-icon">
-            <MessageSquare size={21} />
-          </span>
-          <h3>
-            Guestbook <span>({comments.length})</span>
-          </h3>
-          <span className="demo-label">DEMO</span>
-        </div>
-        <p className="guestbook-demo-note">
-          A guestbook preview with fictional sample entries. Anything you add
-          stays on this page and disappears when you reload or leave.
-        </p>
-        <form className="hub-form guestbook-form" onSubmit={addDemoComment}>
-          <label htmlFor="guest-name">Your name</label>
-          <input
-            id="guest-name"
-            name="name"
-            value={name}
-            onChange={(event) => setName(event.target.value)}
-            placeholder="Leave your name"
-            required
-            maxLength={60}
-            autoComplete="nickname"
-          />
-          <label htmlFor="guest-message">Comment</label>
-          <textarea
-            id="guest-message"
-            value={message}
-            onChange={(event) => setMessage(event.target.value)}
-            placeholder="A thought, a hello, or a little feedback…"
-            required
-            minLength={2}
-            maxLength={500}
-            rows={4}
-          />
-          <span className="message-counter">{message.length} / 500</span>
-          <label htmlFor="guest-photo">
-            Profile photo <span className="optional-label">(optional)</span>
-          </label>
-          <div className="guest-photo-control">
-            <input
-              ref={photoInput}
-              id="guest-photo"
-              type="file"
-              accept="image/jpeg,image/png,image/webp"
-              onChange={(event) => void selectPhoto(event.target.files?.[0])}
-              aria-describedby="photo-help photo-error"
-            />
-            <span>
-              <ImagePlus size={18} />{" "}
-              {photoLoading
-                ? "Checking image…"
-                : fileName || "Choose profile photo"}
-            </span>
-          </div>
-          {avatar && (
-            <div className="photo-preview">
-              <Image
-                src={avatar}
-                alt="Your selected profile photo preview"
-                width={38}
-                height={38}
-                unoptimized
-              />
-              <span>Preview photo selected</span>
-              <button
-                type="button"
-                aria-label="Remove profile photo"
-                onClick={() => {
-                  setAvatar(null);
-                  setFileName("");
-                  if (photoInput.current) photoInput.current.value = "";
-                }}
-              >
-                <X size={16} />
-              </button>
-            </div>
-          )}
-          <p className="form-help" id="photo-help">
-            JPG, PNG, or WebP · Up to 5 MB · Stays in your browser
-          </p>
-          <p id="photo-error" role="alert" className="form-error">
-            {photoError}
-          </p>
-          <button
-            type="submit"
-            className="button primary"
-            disabled={
-              photoLoading ||
-              comments.filter((comment) => !comment.sample).length >= 20
-            }
-          >
-            <Send size={17} /> Add demo comment
-          </button>
-          {notice && (
-            <p className="guestbook-notice" role="status">
-              {notice}
-            </p>
-          )}
-        </form>
-        <div
-          className="comment-list"
-          role="region"
-          aria-label="Demo guestbook comments"
-          tabIndex={0}
-        >
-          {comments.map((comment) => (
-            <article className="guest-comment" key={comment.id}>
-              <div className="comment-avatar">
-                {comment.avatar ? (
-                  <Image
-                    src={comment.avatar}
-                    alt=""
-                    width={38}
-                    height={38}
-                    unoptimized
-                  />
-                ) : (
-                  <User size={19} aria-hidden="true" />
-                )}
-              </div>
-              <div className="comment-content">
-                <div>
-                  <strong>{comment.name}</strong>
-                  <span>
-                    {comment.sample ? "Sample entry" : "This session"}
-                  </span>
-                </div>
-                <p>{comment.message}</p>
-              </div>
-            </article>
-          ))}
-        </div>
-      </div>
+      {guestbookEnabled && <Guestbook />}
     </div>
   );
 }
