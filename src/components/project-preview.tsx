@@ -55,11 +55,11 @@ export function ProjectPreview({ id }: { id: string }) {
   return (
     <div
       className={`project-preview preview-${id}`}
-      aria-label="ReadyTech service workflow concept illustration, not an application screenshot"
+      aria-label="Placeholder for ReadyTech screenshots"
       role="img"
     >
       <span className="preview-caption">
-        CONCEPT PREVIEW · NOT A SCREENSHOT
+        PLACEHOLDER · SCREENSHOTS TO COME
       </span>
       <div className="readytech-art">
         <div className="readytech-symbol">

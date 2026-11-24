@@ -305,8 +305,8 @@ export function Projects() {
         ))}
       </div>
       <p className="section-note">
-        Previews include labeled FYP report captures, concept illustrations, and
-        repository artwork. Internship contributions are listed separately under
+        Previews include screenshots from my FYP report, project artwork, and a
+        placeholder where screenshots are still to come. Internship contributions are listed separately under
         Experience.
       </p>
     </section>

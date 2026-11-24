@@ -106,7 +106,7 @@ Case studies are statically generated at `/projects/urban-drive`, `/projects/rea
 
 The Urban Drive case study groups PerdaRide-App, AdminUrbanDrive, and urbandrive-toyyibpay based on code-level relationships. ReadyTech is presented as a development project; its README metrics and future phases are not independently verified. SteelFit is described as a Java/SQL Server academic prototype, with incomplete booking scaffolding identified.
 
-The SteelFit preview uses its existing repository logo, stored locally in `public/projects/steelfit-logo.png`; it is not an application screenshot. Urban Drive now uses original screenshots extracted from the supplied final FYP report, including a role-filtered gallery and full-screen viewer. ReadyTech still uses a labeled concept illustration. Verified demo URLs remain to be provided. See `docs/repository-review.md` for inspected revisions and research scope. No credentials, GitHub PAT, or runtime GitHub integration are needed.
+The SteelFit preview uses its existing repository logo, stored locally in `public/projects/steelfit-logo.png`; it is not an application screenshot. Urban Drive now uses original screenshots extracted from the supplied final FYP report, including a role-filtered gallery and full-screen viewer. ReadyTech uses a marked placeholder until real screenshots are supplied. Verified demo URLs remain to be provided. See `docs/repository-review.md` for inspected revisions and research scope. No credentials, GitHub PAT, or runtime GitHub integration are needed.
 
 ### V2 validation
 
