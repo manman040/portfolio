@@ -37,7 +37,7 @@ Personal information, skills, experience, and contact destinations live in `src/
 
 - Your email, GitHub, LinkedIn, and résumé download are configured. Replace `public/resume.pdf` whenever you update your résumé.
 - Set `siteUrl` to the final HTTPS domain to enable canonical metadata.
-- Education and internship employer are configured from your latest answers. Diploma completed September 2026; graduation November 2027.
+- Education and internship employer are configured from your latest answers. Diploma completed June 2026; convocation November 2027.
 - Public repository links are configured for all three case studies. No unverified live-demo buttons or runtime GitHub requests are used.
 - Replace conceptual project illustrations in `src/components/project-preview.tsx` with actual screenshots when available. Use `next/image`, explicit dimensions, and descriptive alt text.
 - Urban Drive reflects your independently developed Flutter/Dart, PHP, and Firebase FYP. The unconfirmed smart fan project and IoT skill claims have been removed.
@@ -90,9 +90,9 @@ Check at 360px, 768px, and 1440px widths. Confirm no horizontal overflow, mobile
 - Desktop and mobile screenshots were visually inspected. Local screenshots and the browser verification script are in the ignored `.tools` directory.
 - Contact hrefs and the downloadable résumé are configured. External account ownership and availability have not been independently verified.
 
-## Résumé reconciliation
+## Résumé
 
-The provided PDF is included unchanged. It lists diploma education as June 2026, UrbanDrive as Java/Android/Firebase, an older LinkedIn path, and willingness to relocate to Kuala Lumpur. The website follows your more recent instructions: completed September 2026 with graduation November 2027; Urban Drive built independently using Flutter/Dart, PHP, and Firebase; the supplied LinkedIn profile; and Penang-based role preferences. Update the PDF to match before sharing it with recruiters. SteelFit was subsequently added after reviewing the public repository for V2; other résumé-only projects were not automatically added. Laravel was added to skills based on the résumé.
+The site content is the reference for the résumé. `public/resume.pdf` has no source file in this repository and has not been re-exported yet. The next export should change: LinkedIn/relocation header (Penang, remote OK), the UrbanDrive stack (Flutter/Dart, PHP, Firebase), SteelFit data storage (SQL Server), and add the merged internship modules, skills, and ReadyTech. Delete this note after replacing the PDF.
 
 ## Company logos
 

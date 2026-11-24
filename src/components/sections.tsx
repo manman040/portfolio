@@ -19,7 +19,13 @@ import {
   Sparkles,
   Terminal,
 } from "lucide-react";
-import { experience, portfolio, projects, skills } from "@/data/portfolio";
+import {
+  experience,
+  otherProjects,
+  portfolio,
+  projects,
+  skills,
+} from "@/data/portfolio";
 import { Destination, SectionHeading, Tags } from "./ui";
 import { Reveal } from "./reveal";
 import { ProjectPreview } from "./project-preview";
@@ -240,7 +246,7 @@ export function Projects() {
         number="03"
         label="SELECTED WORK"
         title="Ideas, turned into applications."
-        description="Independent and academic work, grounded in public source code. Explore the implementation behind each project."
+        description="Independent and academic work. Explore the implementation behind the featured projects."
       />
       <div className="projects-grid">
         {projects.map((project, index) => (
@@ -285,6 +291,18 @@ export function Projects() {
             </div>
           </Reveal>
         ))}
+        {otherProjects.map((project) => (
+          <Reveal className="card project-card" key={project.title}>
+            <div className="project-body">
+              <div className="project-category">
+                <span>{project.category}</span>
+              </div>
+              <h3>{project.title}</h3>
+              <p>{project.description}</p>
+              <Tags items={project.stack} />
+            </div>
+          </Reveal>
+        ))}
       </div>
       <p className="section-note">
         Previews include labeled FYP report captures, concept illustrations, and
@@ -302,7 +320,7 @@ export function Experience() {
         number="04"
         label="EXPERIENCE"
         title="Grounded in real-world work."
-        description="From developing mobile applications to helping keep production applications running."
+        description="From developing web and mobile applications to helping keep production applications running."
       />
       <div className="experience-list">
         {experience.map((role) => (

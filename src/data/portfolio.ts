@@ -12,20 +12,20 @@ export const portfolio = {
   biography:
     "I enjoy turning an idea into something people can actually use. From independently building my college e-hailing project to developing Flutter applications during my internship and supporting manufacturing applications today, I’m building a grounded understanding of how software works in the real world.",
   education: {
-    qualification: "Diploma In Computer Technology",
+    qualification: "Diploma in Computer Technology",
     institution: "Institut Kemahiran Tinggi Perda-Tech",
-    completed: "Completed September 2026",
-    graduation: "Graduation November 2027",
+    completed: "Completed June 2026",
+    graduation: "Convocation November 2027",
   },
   career: {
-    roles: "Software Developer & Application Developer",
+    roles: "Software Developer, Application Developer, Junior Developer, and Programmer",
     location: "Penang",
     workArrangement: "Open to on-site and remote roles",
     notice: "Start date subject to notice period with current employer",
   },
   email: "aimanjamili46@gmail.com" as string | null,
   github: "https://github.com/manman040" as string | null,
-  linkedin: "https://www.linkedin.com/in/aiman-f-958947363" as string | null,
+  linkedin: "https://www.linkedin.com/in/aiman-jamili" as string | null,
   resume: publicPath("/resume.pdf") as string | null,
   siteUrl: (process.env.NEXT_PUBLIC_SITE_URL || null) as string | null,
 };
@@ -40,28 +40,52 @@ export const skills = [
   {
     title: "Languages",
     code: "01",
-    items: ["Dart", "PHP", "Java", "JavaScript", "SQL"],
+    items: ["Dart", "PHP", "Java", "JavaScript", "SQL", "HTML", "CSS"],
   },
   {
     title: "Frameworks & development",
     code: "02",
-    items: ["Flutter", "Laravel", "Android", "REST APIs", "HTML", "CSS"],
+    items: [
+      "Flutter",
+      "Laravel",
+      "Android",
+      "REST APIs",
+      "JSON integration",
+      "RBAC",
+      "Database design",
+      "Debugging",
+    ],
   },
   {
     title: "Data & developer tools",
     code: "03",
     items: [
       "MySQL",
+      "Microsoft SQL Server",
       "Firebase",
       "Git",
       "GitHub",
       "VS Code",
       "Android Studio",
       "Postman",
+      "Figma",
+      "Composer",
+      "XAMPP",
+      "Laragon",
+      "PuTTY",
     ],
   },
 ];
 export { projects } from "./projects";
+export const otherProjects = [
+  {
+    title: "CarRental",
+    category: "Semester 4 project · Car rental web application",
+    description:
+      "A web application with CRUD features for vehicles, rental bookings, and customers, with form validation.",
+    stack: ["PHP", "HTML", "Microsoft SQL Server", "XAMPP"],
+  },
+];
 export const experience = [
   {
     date: "Sep 2026 — Present",
@@ -76,14 +100,14 @@ export const experience = [
     current: true,
     points: [
       "Support manufacturing applications across production lines and troubleshoot application and station configuration issues.",
-      "Work with eVA for PC and equipment registration/configuration, and JemsMM for station and route configuration.",
+      "Provide application support for in-house manufacturing systems, including PC, station equipment, and production route configuration.",
       "Investigate recurring issues and possible root causes, escalate software issues to development teams, and collaborate with engineers to maintain operational continuity.",
     ],
   },
   {
     date: "Jan 2026 — Jun 2026",
-    title: "Software Development Intern",
-    subtitle: "Mobile application development",
+    title: "Programmer (Internship)",
+    subtitle: "Laravel web and Flutter mobile development",
     company: "Myrich Dynasty Network SDN. BHD",
     logo: publicPath("/companies/mdn.png"),
     logoAlt: "Myrich Dynasty Network",
@@ -93,19 +117,29 @@ export const experience = [
       {
         title: "Penang Smart Kariah",
         description:
-          "Infaq & Wakaf module, dynamic forms, API integration, and Zakat UI/UX contributions.",
+          "Infaq & Wakaf, Smart ID, Organization Chart, Announcements, Mosque Information, and Committee Management modules, with API integration and Zakat UI/UX contributions.",
       },
       {
         title: "GoMasjid / GoMasjidPro",
         description:
           "Flutter development, donation-related functionality, integration, and debugging as part of the team.",
       },
+      {
+        title: "MasjidPro Dashboard",
+        description:
+          "Committee Management and Committee Report modules, IC search, mosque categorisation, and dashboard data workflow improvements.",
+      },
+      {
+        title: "Sistem Pengurusan Bersepadu (MAINPP)",
+        description:
+          "Enhancements to the Facility, Asset, Appointments, Complaints and Suggestions, Notifications, Documentation, Transfers, and Member Management modules, with UI/UX revamp work.",
+      },
     ],
     current: false,
     points: [
-      "Contributed to Flutter development on Penang Smart Kariah and GoMasjid / GoMasjidPro as part of the internship team.",
-      "Developed Penang Smart Kariah’s Infaq & Wakaf module, including dynamic donation forms and input validation. Integrated PHP backend APIs and MySQL-related functionality.",
-      "Participated in debugging and application testing, and contributed to Zakat module UI/UX.",
+      "Developed and enhanced Laravel web and Flutter mobile modules as part of the internship team.",
+      "Developed Penang Smart Kariah’s Infaq & Wakaf module, including dynamic donation forms and input validation. Built RESTful APIs to connect the Laravel (PHP) backend with the Flutter app, and worked on MySQL database structures and queries.",
+      "Implemented role-based access control and data validation, designed UI/UX in Figma, and tested and debugged features.",
     ],
   },
 ];
