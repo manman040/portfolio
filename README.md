@@ -94,6 +94,10 @@ Check at 360px, 768px, and 1440px widths. Confirm no horizontal overflow, mobile
 
 The site content is the reference for the résumé. `public/resume.pdf` has no source file in this repository and has not been re-exported yet. The next export should change: LinkedIn/relocation header (Penang, remote OK), the UrbanDrive stack (Flutter/Dart, PHP, Firebase), SteelFit data storage (SQL Server), and add the merged internship modules, skills, and ReadyTech. Delete this note after replacing the PDF.
 
+## Skill icons
+
+Skill logos in `public/skills/` come from Devicon 2.17.0 (MIT), with XAMPP and Laragon from Simple Icons 15.0.0 (CC0) in brand colors. Logos are trademarks of their owners. Skills without a logo use Lucide symbols; mappings live in `src/components/skill-icons.tsx`.
+
 ## Company logos
 
 Experience logos are stored locally in `public/companies/`. The MDN crest comes from https://mdnsb.com/images/logo-mdnsb.png. The Jabil wordmark comes from https://www.jabil.com/.resources/jabil-main/themes/jabil-one-26/src/img/2024/logos/logo-jabil.svg, with white lettering changed to navy for the white tile. Company website links and logo paths are centralized in the experience data.

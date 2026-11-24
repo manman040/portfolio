@@ -28,6 +28,7 @@ import {
 } from "@/data/portfolio";
 import { Destination, SectionHeading, Tags } from "./ui";
 import { Reveal } from "./reveal";
+import { SkillIcons } from "./skill-icons";
 import { ProjectPreview } from "./project-preview";
 
 export function Hero() {
@@ -226,7 +227,7 @@ export function Skills() {
                 <span>{group.code}</span>
               </div>
               <h3>{group.title}</h3>
-              <Tags items={group.items} />
+              <SkillIcons items={group.items} />
             </Reveal>
           );
         })}
@@ -261,10 +262,7 @@ export function Projects() {
                 <span>{project.category}</span>
                 <span>/{project.number}</span>
               </div>
-              <h3>
-                <Link href={`/projects/${project.slug}`}>{project.title}</Link>
-                <ArrowUpRight size={23} />
-              </h3>
+              <h3>{project.title}</h3>
               <p>{project.description}</p>
               <Tags items={project.stack} />
               <details className="project-details">
@@ -278,14 +276,21 @@ export function Projects() {
                 </ul>
               </details>
               <div className="project-links">
-                <Destination href={project.github}>
-                  <Github size={14} /> Source
+                <Destination
+                  href={project.github}
+                  className="button secondary"
+                >
+                  <Github size={16} /> Source
                 </Destination>
                 <Link
-                  className="case-study-link"
+                  className="button primary"
                   href={`/projects/${project.slug}`}
                 >
-                  View case study <ArrowUpRight size={16} />
+                  <span>
+                    View case study
+                    <span className="sr-only">: {project.title}</span>
+                  </span>
+                  <ArrowRight size={17} />
                 </Link>
               </div>
             </div>

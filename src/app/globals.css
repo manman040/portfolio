@@ -4588,3 +4588,78 @@ h2 {
     font-size: 12px;
   }
 }
+
+/* Project call-to-action buttons */
+.project-links > a.button {
+  flex: 1 1 150px;
+  flex-wrap: nowrap;
+  gap: 9px;
+  min-height: 48px;
+  font-size: 14px;
+}
+.project-links > a.button.primary {
+  flex-grow: 2;
+  order: -1;
+  color: #fff;
+}
+
+/* Skill icon tiles */
+.skill-icons {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(88px, 1fr));
+  gap: 10px;
+}
+.skill-icons > li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 6px 13px;
+  background: #ffffff05;
+  border: 1px solid #ffffff0d;
+  border-radius: 12px;
+  text-align: center;
+  transition:
+    background 0.2s,
+    border-color 0.2s,
+    transform 0.2s;
+}
+.skill-icons > li:hover {
+  background: #8b5cf614;
+  border-color: #a78bfa50;
+  transform: translateY(-3px);
+}
+.skill-icon {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  color: #b79cf0;
+}
+.skill-icon img {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+}
+.skill-logo-github img {
+  filter: invert(1);
+}
+.skill-logo-mysql img {
+  filter: brightness(1.9);
+}
+.skill-name {
+  font-size: 12px;
+  line-height: 1.35;
+  color: #b5b0bf;
+}
+@media (prefers-reduced-motion: reduce) {
+  .skill-icons > li {
+    transition: none;
+  }
+  .skill-icons > li:hover {
+    transform: none;
+  }
+}
