@@ -29,7 +29,7 @@ npm.cmd run dev
 
 The ignored `.tools` directory is local tooling and should not be committed or deployed.
 
-The first dependency installation resolves current stable packages. Commit the resulting `package-lock.json` and use `npm ci` for subsequent reproducible installs.
+Direct dependencies are pinned to exact versions. Use `npm ci` for reproducible installs.
 
 ## Personalize before publishing
 
