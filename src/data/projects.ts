@@ -118,7 +118,7 @@ export const projects: Project[] = [
       },
     ],
     scope:
-      "Academic project with a small pilot involving 15 users and 5 drivers, as reported by the developer. Features and screenshots are documented in the final project report; linked repositories also include a related Flutter remake. Pilot duration, measured performance gains, and commercial deployment are not claimed. No public demo or live payment transaction was independently verified.",
+      "This was an academic project that I tried in a small pilot with 15 users and 5 drivers. The features and screenshots come from my final project report, and the linked repositories include a related Flutter remake. It hasn’t been released commercially, and I didn’t measure performance gains. There is no public demo.",
     story: {
       status: "FYP · Small student/driver pilot",
       pilot: { users: 15, drivers: 5 },
@@ -197,7 +197,7 @@ export const projects: Project[] = [
         {
           title: "Broader payment options",
           description:
-            "Evaluate additional e-wallet, FPX, or card options. These are proposed improvements, not extra integrations claimed as complete.",
+            "Evaluate additional e-wallet, FPX, or card options. These are ideas for future work and aren’t built yet.",
         },
         {
           title: "Emergency assistance",
@@ -206,7 +206,7 @@ export const projects: Project[] = [
         },
       ],
       reflection:
-        "The report highlights the value of analysing requirements before designing screens, keeping rider and driver data synchronized, and planning implementation time. It documents functional outcomes but does not provide a formal test-results table or measured pilot impact.",
+        "The report highlights the value of analysing requirements before designing screens, keeping rider and driver data synchronized, and planning implementation time. It covers what the application does; formal test results and measuring the pilot’s impact would be good next steps.",
     },
     screenshots: [
       {
@@ -328,10 +328,10 @@ export const projects: Project[] = [
     ],
     github: `${github}/readytech`,
     overview:
-      "ReadyTech explores an on-demand IT service marketplace connecting customers and technicians. Its repository separates a Flutter application, a Supabase backend, and a Next.js administrator console. The README describes a foundation-stage project with a broader repair-service lifecycle planned around it.",
+      "ReadyTech explores an on-demand IT service marketplace connecting customers and technicians. Its repository separates a Flutter application, a Supabase backend, and a Next.js administrator console. It’s at the foundation stage, with a broader repair-service lifecycle planned around it.",
     motivation:
       "Explore how customers and technicians can coordinate service requests with explicit roles, controlled status changes, and reviewable administration.",
-    role: "Personal development project. The case study describes the implementation present in my public repository without claiming a released marketplace or independently verified usage.",
+    role: "Personal development project. This case study covers what’s in my public repository; ReadyTech hasn’t been released as a live marketplace.",
     contributions: [
       "Built a Flutter application organized around repositories, BLoC state management, routing, and dependency injection.",
       "Implemented Supabase database migrations and backend functions for the service domain.",
@@ -369,11 +369,11 @@ export const projects: Project[] = [
       {
         title: "Avoiding competing job assignments",
         description:
-          "The matching migration implements server-side ranking and serialized acceptance logic. This is a code-supported design decision; its concurrency behavior was not load-tested during this review.",
+          "The matching migration implements server-side ranking and serialized acceptance logic. I haven’t load-tested its behavior under concurrent requests.",
       },
     ],
     scope:
-      "This is a development project, not a verified public service. The README reports tests and future phases; those tests were not rerun and planned end-to-end repair features are not presented here as completed. No public demo was verified.",
+      "ReadyTech is still in development and isn’t a public service. The end-to-end repair features described in the README are planned for later phases. There is no public demo to link yet.",
     repositories: [
       {
         name: "readytech",
@@ -421,10 +421,10 @@ export const projects: Project[] = [
     stack: ["Java", "Android", "XML layouts", "SQL Server", "JDBC"],
     github: `${github}/SteelFit`,
     overview:
-      "SteelFit is a semester project built with native Android activities and XML layouts. The public source contains login and registration screens, trainer-list retrieval, profile-image rendering, and interfaces intended for trainer booking and management.",
+      "SteelFit is a semester project built with native Android activities and XML layouts. It has login and registration screens, trainer-list retrieval, profile-image rendering, and interfaces intended for trainer booking and management.",
     motivation:
       "Explore a mobile interface for finding gym trainers while practising Android screen navigation, list rendering, and database-backed functionality.",
-    role: "Academic application development project. The implementation summary is limited to behavior visible in the public Java and layout files.",
+    role: "Academic application development project. This summary covers what’s in the public Java and layout files.",
     contributions: [
       "Developed Java Android activities and XML-based interfaces.",
       "Implemented database-backed trainer-list retrieval and RecyclerView presentation.",
@@ -450,7 +450,7 @@ export const projects: Project[] = [
       {
         title: "Project boundaries",
         description:
-          "ViewBooking and ManageTrainer contain layout scaffolding in the inspected revision. A complete persisted booking workflow is not claimed.",
+          "ViewBooking and ManageTrainer contain layout scaffolding; the public code doesn’t include a complete, saved booking workflow.",
       },
     ],
     challenges: [
@@ -461,7 +461,7 @@ export const projects: Project[] = [
       },
     ],
     scope:
-      "An academic prototype. The inspected booking and management screens are not sufficient evidence of a completed reservation system. Database connectivity and the Android application were not executed during this portfolio review.",
+      "SteelFit is an academic prototype. In the public code, the booking and management screens are scaffolding and don’t form a complete reservation system.",
     repositories: [
       {
         name: "SteelFit",

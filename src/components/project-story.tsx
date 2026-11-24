@@ -21,7 +21,7 @@ export function ProjectStory({
             <strong>{story.pilot.drivers}</strong>
             <span>Drivers in the pilot</span>
           </div>
-          <p>Participation figures reported by the developer.</p>
+          <p>Participation figures from my own pilot.</p>
         </div>
       )}
       <div className="audience-grid">

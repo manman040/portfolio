@@ -81,8 +81,7 @@ export function CaseStudy({
           >
             {project.story && (
               <p className="feature-provenance">
-                Documented in the final FYP report, with related implementation
-                references linked below.
+                From my final FYP report, with related source code linked below.
               </p>
             )}
             <ul>
@@ -113,10 +112,9 @@ export function CaseStudy({
             {project.screenshots?.length ? (
               <>
                 <p className="gallery-intro">
-                  Original application captures extracted from the final Urban
-                  Drive project report. These show the documented FYP version,
-                  not a live demo of the current repositories. Select any image
-                  to inspect it.
+                  Screenshots from my final Urban Drive project report. They show
+                  the FYP version, which may differ from the current
+                  repositories. Select any image to enlarge it.
                 </p>
                 <ProjectGallery screenshots={project.screenshots} />
               </>
@@ -125,11 +123,10 @@ export function CaseStudy({
                 <span className="eyebrow">APPLICATION SCREENSHOTS</span>
                 <h3>Screen captures to come.</h3>
                 <p>
-                  Actual application screenshots have not been supplied or found
-                  in the inspected files. The preview above is{" "}
+                  I’ll add application screenshots here. The preview above is{" "}
                   {project.id === "steelfit"
-                    ? "existing repository artwork"
-                    : "a conceptual illustration"}
+                    ? "the project logo"
+                    : "a placeholder illustration"}
                   .
                 </p>
               </div>
@@ -157,14 +154,11 @@ export function CaseStudy({
               ))}
             </div>
             <details className="case-sources">
-              <summary>Source references used for this case study</summary>
+              <summary>Source code references</summary>
               <p>
                 {project.story
-                  ? "The developer’s final Urban Drive project report and pilot confirmation supplement the linked repository sources. "
-                  : ""}
-                Reviewed November 2026. Source inspection supports the
-                descriptions; the project applications were not executed as part
-                of this review.
+                  ? "This case study draws on my final Urban Drive project report, my pilot, and the source code below."
+                  : "This case study draws on the source code below."}
               </p>
               <ul>
                 {project.sources.map((source) => (

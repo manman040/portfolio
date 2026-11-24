@@ -7,7 +7,7 @@ export function ProjectPreview({ id }: { id: string }) {
     return (
       <div className="project-preview preview-drive-report">
         <span className="preview-caption">
-          ACTUAL APPLICATION CAPTURES · FINAL FYP REPORT
+          SCREENSHOTS · FINAL FYP REPORT
         </span>
         <div className="report-preview-copy">
           <span>CAMPUS TRANSPORT, CONNECTED.</span>
@@ -40,7 +40,7 @@ export function ProjectPreview({ id }: { id: string }) {
     return (
       <div className="project-preview preview-steelfit">
         <span className="preview-caption">
-          REPOSITORY ARTWORK · NOT A SCREENSHOT
+          PROJECT LOGO
         </span>
         <Image
           src={publicPath("/projects/steelfit-logo.png")}
