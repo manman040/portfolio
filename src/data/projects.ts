@@ -210,7 +210,7 @@ export const projects: Project[] = [
     },
     screenshots: [
       {
-        src: publicPath("/projects/urban-drive/rider-dashboard.png"),
+        src: publicPath("/projects/urban-drive/rider-dashboard.webp"),
         title: "Choose a pickup",
         caption:
           "Rider dashboard with location detection and destination search. Final report, Figure 3.8.1.",
@@ -219,7 +219,7 @@ export const projects: Project[] = [
         height: 974,
       },
       {
-        src: publicPath("/projects/urban-drive/booking-preview.png"),
+        src: publicPath("/projects/urban-drive/booking-preview.webp"),
         title: "Review the journey",
         caption:
           "Route, estimated fare, payment method, and passenger package before booking. Final report, Figure 3.8.3.",
@@ -228,7 +228,7 @@ export const projects: Project[] = [
         height: 926,
       },
       {
-        src: publicPath("/projects/urban-drive/driver-bookings.png"),
+        src: publicPath("/projects/urban-drive/driver-bookings.webp"),
         title: "Accept a request",
         caption:
           "Booking details with pickup, destination, fare, and accept/reject actions. Final report, Figure 3.7.5.",
@@ -237,7 +237,7 @@ export const projects: Project[] = [
         height: 605,
       },
       {
-        src: publicPath("/projects/urban-drive/driver-arrival.png"),
+        src: publicPath("/projects/urban-drive/driver-arrival.webp"),
         title: "Arrive at pickup",
         caption:
           "Driver trip stage with route context, start-ride action, and passenger chat. Final report, Figure 3.7.6.",
@@ -246,7 +246,7 @@ export const projects: Project[] = [
         height: 606,
       },
       {
-        src: publicPath("/projects/urban-drive/ride-completed.png"),
+        src: publicPath("/projects/urban-drive/ride-completed.webp"),
         title: "Complete the ride",
         caption:
           "Completed trip state and journey details. Final report, Figure 3.7.6.",
@@ -255,7 +255,7 @@ export const projects: Project[] = [
         height: 606,
       },
       {
-        src: publicPath("/projects/urban-drive/admin-dashboard.png"),
+        src: publicPath("/projects/urban-drive/admin-dashboard.webp"),
         title: "Monitor operations",
         caption:
           "The report’s web dashboard with ride and revenue summaries. On-screen figures are captured UI content, not portfolio impact metrics. Final report, Figure 3.9.2.",

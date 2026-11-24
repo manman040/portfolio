@@ -5,18 +5,19 @@ export const portfolio = {
   initials: "AF",
   // Set to "/portrait" after running: node scripts/prepare-portrait.mjs <photo>
   portrait: null as string | null,
-  headline: "Software Developer | Flutter | Web & Backend Development",
+  headline: "Software Developer | Laravel | Flutter | Web & Backend Development",
   location: "Penang, Malaysia",
   availability: "Open to Software Development Opportunities",
   intro:
     "I build intuitive mobile applications, thoughtful web experiences, and practical software solutions. Currently in application support, working towards my next chapter in software development.",
   biography:
-    "I enjoy turning an idea into something people can actually use. From independently building my college e-hailing project to developing Flutter applications during my internship and supporting manufacturing applications today, I’m building a grounded understanding of how software works in the real world.",
+    "I enjoy turning an idea into something people can actually use. From independently building my college e-hailing project to developing Laravel and Flutter modules during my internship and supporting manufacturing applications today, I’m building a grounded understanding of how software works in the real world.",
   education: {
     qualification: "Diploma in Computer Technology",
     institution: "Institut Kemahiran Tinggi Perda-Tech",
     completed: "Completed June 2026",
     graduation: "Convocation November 2027",
+    cgpa: "CGPA 3.82",
   },
   career: {
     roles: "Software Developer, Application Developer, Junior Developer, and Programmer",
@@ -53,17 +54,18 @@ export const skills = [
       "REST APIs",
       "JSON integration",
       "RBAC",
-      "Database design",
       "Debugging",
     ],
   },
   {
-    title: "Data & developer tools",
+    title: "Data",
     code: "03",
+    items: ["MySQL", "Microsoft SQL Server", "Firebase", "Database design"],
+  },
+  {
+    title: "Developer tools",
+    code: "04",
     items: [
-      "MySQL",
-      "Microsoft SQL Server",
-      "Firebase",
       "Git",
       "GitHub",
       "VS Code",
@@ -110,7 +112,7 @@ export const experience = [
     title: "Programmer (Internship)",
     subtitle: "Laravel web and Flutter mobile development",
     company: "Myrich Dynasty Network SDN. BHD",
-    logo: publicPath("/companies/mdn.png"),
+    logo: publicPath("/companies/mdn.webp"),
     logoAlt: "Myrich Dynasty Network",
     website: "https://mdnsb.com/",
     logoTheme: "dark",

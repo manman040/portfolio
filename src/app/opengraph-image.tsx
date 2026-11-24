@@ -36,7 +36,7 @@ export default function Image() {
         Real-world impact.
       </div>
       <div style={{ fontSize: 24, color: "#a1a1aa", marginTop: 36 }}>
-        Flutter & Web Development · Application Support
+        Laravel, Flutter & Web Development · Application Support
       </div>
     </div>,
     size,

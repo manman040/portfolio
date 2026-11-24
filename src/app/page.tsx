@@ -10,10 +10,12 @@ import {
 } from "@/components/sections";
 import { portfolio } from "@/data/portfolio";
 import { ScrollProgress } from "@/components/reveal";
+import { ProfileSchema } from "@/components/profile-schema";
 
 export default function Home() {
   return (
     <>
+      <ProfileSchema />
       <ScrollProgress />
       <Navbar />
       <main id="main" className="page-shell">

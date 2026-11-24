@@ -11,6 +11,7 @@ import {
   Braces,
   Check,
   Code2,
+  Database,
   Globe2,
   GraduationCap,
   Layers3,
@@ -173,7 +174,8 @@ export function About() {
           <h3>{portfolio.education.qualification}</h3>
           <p>{portfolio.education.institution}</p>
           <p className="education-date">
-            {portfolio.education.completed} · {portfolio.education.graduation}
+            {portfolio.education.cgpa} · {portfolio.education.completed} ·{" "}
+            {portfolio.education.graduation}
           </p>
         </Reveal>
         <Reveal className="card journey-card">
@@ -204,14 +206,14 @@ export function About() {
 }
 
 export function Skills() {
-  const icons = [Braces, Layers3, Terminal, Globe2];
+  const icons = [Braces, Layers3, Database, Terminal];
   return (
     <section id="skills" className="section">
       <SectionHeading
         number="02"
         label="MY TOOLKIT"
         title="The tools behind the work."
-        description="Technologies I’ve used across mobile development, backend integration, and application support."
+        description="Technologies I’ve used across web and mobile development, backend integration, and application support."
       />
       <div className="skills-grid">
         {skills.map((group, index) => {

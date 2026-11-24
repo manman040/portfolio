@@ -17,7 +17,7 @@ export function ProjectPreview({ id }: { id: string }) {
         <div className="report-preview-screens">
           <div className="report-phone report-phone-one">
             <Image
-              src={publicPath("/projects/urban-drive/rider-dashboard.png")}
+              src={publicPath("/projects/urban-drive/rider-dashboard.webp")}
               alt="Urban Drive rider dashboard captured in the final FYP report"
               width={438}
               height={974}
@@ -26,7 +26,7 @@ export function ProjectPreview({ id }: { id: string }) {
           </div>
           <div className="report-phone report-phone-two">
             <Image
-              src={publicPath("/projects/urban-drive/booking-preview.png")}
+              src={publicPath("/projects/urban-drive/booking-preview.webp")}
               alt="Urban Drive booking preview with route, fare, and passenger package from the final report"
               width={416}
               height={926}
@@ -43,7 +43,7 @@ export function ProjectPreview({ id }: { id: string }) {
           PROJECT LOGO
         </span>
         <Image
-          src={publicPath("/projects/steelfit-logo.png")}
+          src={publicPath("/projects/steelfit-logo.webp")}
           alt="SteelFit gym project logo from its Android repository"
           width={250}
           height={200}

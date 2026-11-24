@@ -110,7 +110,7 @@ Case studies are statically generated at `/projects/urban-drive`, `/projects/rea
 
 The Urban Drive case study groups PerdaRide-App, AdminUrbanDrive, and urbandrive-toyyibpay based on code-level relationships. ReadyTech is presented as a development project; its README metrics and future phases are not independently verified. SteelFit is described as a Java/SQL Server academic prototype, with incomplete booking scaffolding identified.
 
-The SteelFit preview uses its existing repository logo, stored locally in `public/projects/steelfit-logo.png`; it is not an application screenshot. Urban Drive now uses original screenshots extracted from the supplied final FYP report, including a role-filtered gallery and full-screen viewer. ReadyTech uses a marked placeholder until real screenshots are supplied. Verified demo URLs remain to be provided. See `docs/repository-review.md` for inspected revisions and research scope. No credentials, GitHub PAT, or runtime GitHub integration are needed.
+The SteelFit preview uses its existing repository logo, stored locally in `public/projects/steelfit-logo.webp`; it is not an application screenshot. Urban Drive now uses original screenshots extracted from the supplied final FYP report, including a role-filtered gallery and full-screen viewer. ReadyTech uses a marked placeholder until real screenshots are supplied. Verified demo URLs remain to be provided. See `docs/repository-review.md` for inspected revisions and research scope. No credentials, GitHub PAT, or runtime GitHub integration are needed.
 
 ### V2 validation
 
@@ -151,6 +151,10 @@ The guestbook stores comments in Supabase and is hidden until it is configured:
 3. Approve comments in Supabase's Table Editor by setting `approved` to true; delete unwanted rows.
 
 Visitors can only read approved comments and submit a name and message. The database limits submissions (20 per hour and 200 pending, site-wide) and rejects links; the form has a honeypot field. There are no photo uploads or visitor tracking, so a determined spammer could fill the hourly limit.
+
+## Images and search metadata
+
+GitHub Pages serves images without resizing, so raster images are stored as WebP at display-appropriate sizes. The sitemap is generated at `/sitemap.xml` (submit its full URL in Google Search Console), and the homepage includes ProfilePage structured data. There is no `robots.txt`: crawlers only read it at the domain root, which this project site does not control.
 
 ## GitHub Pages
 

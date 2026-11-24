@@ -6,7 +6,7 @@ import "./globals.css";
 import { IntroLoader } from "@/components/intro-loader";
 
 const title = `${portfolio.name} | Software Developer Portfolio`;
-const description = `Explore the portfolio of ${portfolio.name}, a software developer based in ${portfolio.location}, with experience in Flutter, web development, and enterprise application support.`;
+const description = `Explore the portfolio of ${portfolio.name}, a software developer based in ${portfolio.location}, with experience in Laravel, Flutter, web development, and enterprise application support.`;
 export const metadata: Metadata = {
   title,
   description,
