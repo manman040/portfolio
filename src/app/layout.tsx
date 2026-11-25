@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "@fontsource-variable/montserrat";
 import { GeistMono } from "geist/font/mono";
 import { portfolio } from "@/data/portfolio";
+import { shareImage } from "@/lib/share-image";
 import "./globals.css";
 import "./sections.css";
 
@@ -27,8 +28,14 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_MY",
     siteName: `${portfolio.name} Portfolio`,
+    images: [shareImage],
   },
-  twitter: { card: "summary_large_image", title, description },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    images: [shareImage],
+  },
 };
 export default function RootLayout({
   children,

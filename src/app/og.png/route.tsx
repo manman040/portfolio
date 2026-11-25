@@ -1,10 +1,11 @@
 import { ImageResponse } from "next/og";
 import { portfolio } from "@/data/portfolio";
-export const alt = "Aiman Farhan, Junior Software Developer";
-export const size = { width: 1200, height: 630 };
-export const contentType = "image/png";
+import { shareImage } from "@/lib/share-image";
+
+// A route named og.png, because GitHub Pages picks the content type from the
+// file extension and Next.js exports opengraph-image without one.
 export const dynamic = "force-static";
-export default function Image() {
+export function GET() {
   return new ImageResponse(
     <div
       style={{
@@ -39,6 +40,6 @@ export default function Image() {
         Flutter · Java · PHP · Laravel
       </div>
     </div>,
-    size,
+    { width: shareImage.width, height: shareImage.height },
   );
 }

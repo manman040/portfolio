@@ -1,6 +1,6 @@
 # Interactive developer ID card
 
-The badge displays Junior Software Developer, Aiman Farhan, the location, and Flutter / Java / Laravel. It shows the portrait configured in `src/data/portfolio.ts`, with the AF monogram as a fallback.
+The badge displays Junior Software Developer, Aiman Farhan, the location, and Flutter / Laravel. It shows the portrait configured in `src/data/portfolio.ts`, with the AF monogram as a fallback.
 
 ## Implementation
 

@@ -55,7 +55,7 @@ export function DeveloperCard() {
                 </span>
               </div>
               <div className="badge-footer">
-                <span>Flutter / Java / Laravel</span>
+                <span>Flutter / Laravel</span>
                 <div className="badge-bars" aria-hidden="true" />
               </div>
             </div>
