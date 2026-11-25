@@ -4314,34 +4314,35 @@ h2 {
   color: #9c90aa;
   margin-top: 12px;
 }
-.email-draft-result {
+.form-result {
   border: 1px solid #a78bfa30;
   border-radius: 10px;
   background: #8b5cf609;
   padding: 16px;
   margin-top: 18px;
 }
-.email-draft-result > p {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  font-size: 13px;
-  color: #c9bbdf;
-}
-.email-draft-result a {
+.form-result > p {
   display: flex;
   align-items: center;
   gap: 8px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #c9bbdf;
+}
+.form-result > p > svg {
+  flex-shrink: 0;
+}
+.form-result > a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 100%;
+  margin-top: 10px;
+  overflow-wrap: anywhere;
   color: #d0b7f5;
   font-weight: 550;
   min-height: 44px;
   font-size: 14px;
-}
-.email-draft-result > span {
-  color: #9c90aa;
-  font-size: 11px;
-  line-height: 1.7;
-  display: block;
 }
 .hub-socials {
   margin-top: 28px;

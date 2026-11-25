@@ -142,7 +142,7 @@ Entrance/card validation: ESLint, TypeScript, and production build passed. Headl
 
 ## Contact and guestbook
 
-The contact form prepares a `mailto:` draft that the visitor sends from their own email app.
+The contact form sends messages through Web3Forms. Create an access key at https://web3forms.com with the receiving email address, then add it as the GitHub Actions **variable** `WEB3FORMS_ACCESS_KEY` (locally: `NEXT_PUBLIC_WEB3FORMS_KEY` in `.env.local`) and redeploy. The key is visible in the browser by design. Without a key, the form opens the visitor’s email app instead; if sending fails, the form keeps the text and offers a direct email link.
 
 The guestbook stores comments in Supabase and is hidden until it is configured:
 
@@ -164,7 +164,7 @@ In repository **Settings → Pages**, select **GitHub Actions** as the source. N
 
 Run `npm run build:pages` locally to generate the static site in `.next-pages/`. The helper sets `GITHUB_PAGES=true`, `NEXT_PUBLIC_BASE_PATH=/portfolio`, and `NEXT_PUBLIC_SITE_URL=https://manman040.github.io/portfolio`. The standard `npm run dev` and `npm run build` keep their normal local/server behavior. After a Pages build, run `npm run build` before using `npm start` for a server deployment.
 
-The Pages build uses static export, trailing-slash routes, and unoptimized local image delivery because GitHub Pages cannot run Next.js’s image server. `publicPath()` prefixes public assets and downloads; Next.js Link prefixes internal routes. The Open Graph image is explicitly static, and `.nojekyll` preserves underscore-named asset directories. Contact email drafts run in the browser; the guestbook calls Supabase directly. The intro, developer card, gallery, project pages, résumé, and company logos are included.
+The Pages build uses static export, trailing-slash routes, and unoptimized local image delivery because GitHub Pages cannot run Next.js’s image server. `publicPath()` prefixes public assets and downloads; Next.js Link prefixes internal routes. The Open Graph image is explicitly static, and `.nojekyll` preserves underscore-named asset directories. The contact form calls Web3Forms and the guestbook calls Supabase, both directly from the browser. The intro, developer card, gallery, project pages, résumé, and company logos are included.
 
 If the repository name changes, update the base path and site URL in the Pages build helper and workflow together. A custom domain usually needs an empty base path and matching production site URL.
 

@@ -12,21 +12,43 @@ import {
 import { Github, Linkedin } from "./brand-icons";
 import { Guestbook } from "./guestbook";
 import { portfolio } from "@/data/portfolio";
+import {
+  contactSendingEnabled,
+  mailtoLink,
+  sendMessage,
+  type ContactMessage,
+} from "@/lib/contact";
 import { guestbookEnabled } from "@/lib/guestbook";
 
-export function ContactHub() {
-  const [emailDraft, setEmailDraft] = useState<string | null>(null);
+type Status = "idle" | "sending" | "sent" | "failed" | "mail";
 
-  function prepareEmail(event: FormEvent<HTMLFormElement>) {
+export function ContactHub() {
+  const [status, setStatus] = useState<Status>("idle");
+  const [mailLink, setMailLink] = useState("");
+
+  async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const sender = String(data.get("name") ?? "").trim();
-    const email = String(data.get("email") ?? "").trim();
-    const content = String(data.get("message") ?? "").trim();
-    if (!sender || !email || !content || !portfolio.email) return;
-    setEmailDraft(
-      `mailto:${portfolio.email}?subject=${encodeURIComponent(`Portfolio enquiry from ${sender}`)}&body=${encodeURIComponent(`Name: ${sender}\nEmail: ${email}\n\n${content}`)}`,
-    );
+    const form = event.currentTarget;
+    const data = new FormData(form);
+    const entry: ContactMessage = {
+      name: String(data.get("name") ?? "").trim(),
+      email: String(data.get("email") ?? "").trim(),
+      message: String(data.get("message") ?? "").trim(),
+    };
+    if (status === "sending" || !portfolio.email) return;
+    if (!entry.name || !entry.email || !entry.message) return;
+    const link = mailtoLink(portfolio.email, entry);
+    setMailLink(link);
+    if (!contactSendingEnabled) {
+      setStatus("mail");
+      window.location.href = link;
+      return;
+    }
+    setStatus("sending");
+    // Bots fill in the hidden field; their submissions are dropped.
+    const sent = data.get("website") ? true : await sendMessage(entry);
+    setStatus(sent ? "sent" : "failed");
+    if (sent) form.reset();
   }
 
   return (
@@ -42,8 +64,10 @@ export function ContactHub() {
         </p>
         <form
           className="hub-form"
-          onSubmit={prepareEmail}
-          onChange={() => setEmailDraft(null)}
+          onSubmit={submit}
+          onChange={() => {
+            if (status !== "sending") setStatus("idle");
+          }}
         >
           <label htmlFor="contact-name">Your name</label>
           <div className="input-with-icon">
@@ -80,27 +104,52 @@ export function ContactHub() {
             maxLength={3000}
             rows={5}
           />
+          <div hidden>
+            <input
+              name="website"
+              tabIndex={-1}
+              autoComplete="off"
+              aria-label="Leave this field empty"
+            />
+          </div>
           <button
             type="submit"
             className="button primary"
-            disabled={!portfolio.email}
+            disabled={!portfolio.email || status === "sending"}
           >
-            <Send size={17} /> Prepare email
+            <Send size={17} />{" "}
+            {!contactSendingEnabled
+              ? "Open in email app"
+              : status === "sending"
+                ? "Sending…"
+                : "Send message"}
           </button>
           <p className="form-help">
-            Creates a draft for your email app. Nothing is sent from this page.
+            {contactSendingEnabled
+              ? "Your message is sent to my email through Web3Forms. I’ll reply to the address you enter."
+              : "Opens your email app with this message filled in."}
           </p>
-          {emailDraft && (
-            <div className="email-draft-result" role="status">
-              <p>
-                <Check size={15} /> Your draft is ready.
-              </p>
-              <a href={emailDraft}>
-                Open email draft <ArrowUpRight size={16} />
-              </a>
-              <span>You’ll review and send it in your email app.</span>
-            </div>
-          )}
+          <div role="status">
+            {status === "sent" && (
+              <div className="form-result">
+                <p>
+                  <Check size={16} /> Thank you! Your message has been sent.
+                </p>
+              </div>
+            )}
+            {(status === "failed" || status === "mail") && (
+              <div className="form-result">
+                <p>
+                  {status === "failed"
+                    ? "Sorry, I couldn’t confirm that your message was sent. Please try again, or email me directly."
+                    : "Email app didn’t open? Email me directly."}
+                </p>
+                <a href={mailLink}>
+                  <Mail size={16} /> {portfolio.email}
+                </a>
+              </div>
+            )}
+          </div>
         </form>
         <div className="hub-socials">
           <h4>Find me online</h4>
