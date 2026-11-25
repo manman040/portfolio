@@ -417,11 +417,11 @@ export const projects: Project[] = [
     title: "SteelFit",
     category: "Academic project · Native Android",
     description:
-      "A Java Android gym-trainer application exploring account access, trainer discovery, and SQL Server data integration, with booking-related UI scaffolding.",
+      "A Java Android gym-trainer application exploring account access, trainer discovery, trainer booking, and SQL Server data integration.",
     stack: ["Java", "Android", "XML layouts", "SQL Server", "JDBC"],
     github: `${github}/SteelFit`,
     overview:
-      "SteelFit is a semester project built with native Android activities and XML layouts. It has login and registration screens, trainer-list retrieval, profile-image rendering, and interfaces intended for trainer booking and management.",
+      "SteelFit is a semester project built with native Android activities and XML layouts. It has login and registration screens, trainer-list retrieval, profile-image rendering, and trainer booking. In my working version, users could save a booking and view it afterwards; the public code doesn’t include that complete flow.",
     motivation:
       "Explore a mobile interface for finding gym trainers while practising Android screen navigation, list rendering, and database-backed functionality.",
     role: "Academic application development project. This summary covers what’s in the public Java and layout files.",
@@ -450,7 +450,7 @@ export const projects: Project[] = [
       {
         title: "Project boundaries",
         description:
-          "ViewBooking and ManageTrainer contain layout scaffolding; the public code doesn’t include a complete, saved booking workflow.",
+          "My working version could save and show bookings. In the public code, ViewBooking and ManageTrainer contain only layout scaffolding, so the full booking flow can’t be reviewed there.",
       },
     ],
     challenges: [
@@ -461,7 +461,7 @@ export const projects: Project[] = [
       },
     ],
     scope:
-      "SteelFit is an academic prototype. In the public code, the booking and management screens are scaffolding and don’t form a complete reservation system.",
+      "SteelFit is an academic prototype. Booking worked in my version, but the public code is incomplete: its booking and management screens are only scaffolding. I don’t have screenshots of the working app.",
     repositories: [
       {
         name: "SteelFit",

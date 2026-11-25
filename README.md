@@ -92,7 +92,7 @@ Check at 360px, 768px, and 1440px widths. Confirm no horizontal overflow, mobile
 
 ## Résumé
 
-The site content is the reference for the résumé. `public/resume.pdf` has no source file in this repository and has not been re-exported yet. The next export should change: LinkedIn/relocation header (Penang, remote OK), the UrbanDrive stack (Flutter/Dart, PHP, Firebase), SteelFit data storage (SQL Server), and add the merged internship modules, skills, and ReadyTech. Delete this note after replacing the PDF.
+The site content is the reference for the résumé. Edit `resume/resume.html`, print it to PDF with Edge or Chrome (A4, no headers or footers), and save it as `public/resume.pdf`.
 
 ## Skill icons
 
@@ -108,7 +108,7 @@ Featured work now contains Urban Drive / PerdaRide, ReadyTech, and SteelFit. Pen
 
 Case studies are statically generated at `/projects/urban-drive`, `/projects/readytech`, and `/projects/steelfit`. They include overview, motivation, role, implemented features, architecture, source-supported decisions, screenshot placeholders, repository links, and review limitations. Unknown slugs return 404. Each route has its own title, description, and social metadata.
 
-The Urban Drive case study groups PerdaRide-App, AdminUrbanDrive, and urbandrive-toyyibpay based on code-level relationships. ReadyTech is presented as a development project; its README metrics and future phases are not independently verified. SteelFit is described as a Java/SQL Server academic prototype, with incomplete booking scaffolding identified.
+The Urban Drive case study groups PerdaRide-App, AdminUrbanDrive, and urbandrive-toyyibpay based on code-level relationships. ReadyTech is presented as a development project; its README metrics and future phases are not independently verified. SteelFit is described as a Java/SQL Server academic prototype; the owner confirmed that booking worked, and the case study notes that the public code doesn’t include the full flow.
 
 The SteelFit preview uses its existing repository logo, stored locally in `public/projects/steelfit-logo.webp`; it is not an application screenshot. Urban Drive now uses original screenshots extracted from the supplied final FYP report, including a role-filtered gallery and full-screen viewer. ReadyTech uses a marked placeholder until real screenshots are supplied. Verified demo URLs remain to be provided. See `docs/repository-review.md` for inspected revisions and research scope. No credentials, GitHub PAT, or runtime GitHub integration are needed.
 
