@@ -8,6 +8,7 @@ if (!source) {
   process.exit(1);
 }
 const output = (extension) => `public/portrait.${extension}`;
+// Transparent cutouts keep their transparency; the JPEG gets the card color.
 // Rotate by EXIF first; sharp drops metadata (including location) by default.
 const image = sharp(await sharp(source).rotate().toBuffer()).resize(600, 400, {
   fit: "cover",
@@ -15,5 +16,5 @@ const image = sharp(await sharp(source).rotate().toBuffer()).resize(600, 400, {
 });
 await image.clone().avif({ quality: 60 }).toFile(output("avif"));
 await image.clone().webp({ quality: 80 }).toFile(output("webp"));
-await image.clone().flatten().jpeg({ quality: 82 }).toFile(output("jpg"));
+await image.clone().flatten({ background: "#15101e" }).jpeg({ quality: 82 }).toFile(output("jpg"));
 console.log('Done. Set portrait: "/portrait" in src/data/portfolio.ts.');

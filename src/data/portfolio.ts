@@ -3,8 +3,8 @@ import { publicPath } from "@/lib/paths";
 export const portfolio = {
   name: "Aiman Farhan",
   initials: "AF",
-  // Set to "/portrait" after running: node scripts/prepare-portrait.mjs <photo>
-  portrait: null as string | null,
+  // Made with: node scripts/prepare-portrait.mjs <photo>. Use null for the monogram.
+  portrait: "/portrait" as string | null,
   headline: "Software Developer | Laravel | Flutter | Web & Backend Development",
   location: "Penang, Malaysia",
   availability: "Open to Software Development Opportunities",
@@ -80,15 +80,6 @@ export const skills = [
   },
 ];
 export { projects } from "./projects";
-export const otherProjects = [
-  {
-    title: "CarRental",
-    category: "Semester 4 project · Car rental web application",
-    description:
-      "A web application with CRUD features for vehicles, rental bookings, and customers, with form validation.",
-    stack: ["PHP", "HTML", "Microsoft SQL Server", "XAMPP"],
-  },
-];
 export const experience = [
   {
     date: "Sep 2026 — Present",

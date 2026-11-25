@@ -22,7 +22,6 @@ import {
 } from "lucide-react";
 import {
   experience,
-  otherProjects,
   portfolio,
   projects,
   skills,
@@ -295,18 +294,6 @@ export function Projects() {
                   <ArrowRight size={17} />
                 </Link>
               </div>
-            </div>
-          </Reveal>
-        ))}
-        {otherProjects.map((project) => (
-          <Reveal className="card project-card" key={project.title}>
-            <div className="project-body">
-              <div className="project-category">
-                <span>{project.category}</span>
-              </div>
-              <h3>{project.title}</h3>
-              <p>{project.description}</p>
-              <Tags items={project.stack} />
             </div>
           </Reveal>
         ))}
