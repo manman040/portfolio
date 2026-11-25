@@ -9,7 +9,8 @@ export function ProfileSchema() {
       "@type": "Person",
       name: portfolio.name,
       ...(portfolio.siteUrl ? { url: `${portfolio.siteUrl}/` } : {}),
-      description: portfolio.headline,
+      jobTitle: portfolio.headline,
+      description: portfolio.intro,
       homeLocation: { "@type": "Place", name: portfolio.location },
       alumniOf: {
         "@type": "EducationalOrganization",

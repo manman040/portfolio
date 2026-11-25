@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { ArrowUpRight, Menu, X } from "lucide-react";
+import { ArrowDownToLine, Menu, X } from "lucide-react";
 import { navigation, portfolio } from "@/data/portfolio";
 
 export function Navbar() {
@@ -35,9 +35,10 @@ export function Navbar() {
   return (
     <header className="site-header home-nav">
       <div className="nav-shell">
-        <a href="#home" className="logo" aria-label={`${portfolio.name}, home`}>
+        <a href="#home" className="logo">
           {portfolio.initials}
           <span>.</span>
+          <span className="sr-only"> {portfolio.name}, home</span>
         </a>
         <nav
           id="main-navigation"
@@ -57,9 +58,15 @@ export function Navbar() {
             </a>
           ))}
         </nav>
-        <a className="nav-contact" href="#contact">
-          Let’s talk <ArrowUpRight size={15} />
-        </a>
+        {portfolio.resume && (
+          <a
+            className="nav-contact"
+            href={portfolio.resume}
+            download={portfolio.resumeFileName}
+          >
+            Résumé <ArrowDownToLine size={15} />
+          </a>
+        )}
         <button
           id="menu-toggle"
           className="menu-toggle"

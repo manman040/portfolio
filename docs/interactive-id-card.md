@@ -1,6 +1,6 @@
 # Interactive developer ID card
 
-The hero keeps its existing copy, social links, calls to action, and violet styling. The badge now displays AIMAN.DEV, DEV-001, Aiman Farhan, Software Developer, and Laravel / Flutter / Web. It shows the portrait configured in `src/data/portfolio.ts`, with the AF monogram as a fallback.
+The badge displays Junior Software Developer, Aiman Farhan, the location, and Flutter / Java / Laravel. It shows the portrait configured in `src/data/portfolio.ts`, with the AF monogram as a fallback.
 
 ## Implementation
 

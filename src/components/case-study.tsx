@@ -1,12 +1,12 @@
-import { SiteLink as Link } from "./site-link";
-import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
-import type { Project } from "@/data/projects";
+import type { ReactNode } from "react";
+import { ArrowLeft, ArrowRight, ArrowUpRight, Check, Circle } from "lucide-react";
 import { portfolio } from "@/data/portfolio";
-import { ProjectPreview } from "./project-preview";
-import { Tags } from "./ui";
-import { Reveal, ScrollProgress } from "./reveal";
+import type { Project } from "@/data/projects";
 import { ProjectGallery } from "./project-gallery";
-import { ProjectRoadmap, ProjectStory } from "./project-story";
+import { ProjectPreview } from "./project-preview";
+import { Reveal, ScrollProgress } from "./reveal";
+import { SiteLink as Link } from "./site-link";
+import { Tags } from "./ui";
 
 export function CaseStudy({
   project,
@@ -20,13 +20,10 @@ export function CaseStudy({
       <ScrollProgress />
       <header className="site-header">
         <div className="nav-shell">
-          <Link
-            href="/"
-            className="logo"
-            aria-label={`${portfolio.name}, home`}
-          >
+          <Link href="/" className="logo">
             {portfolio.initials}
             <span>.</span>
+            <span className="sr-only"> {portfolio.name}, home</span>
           </Link>
           <Link className="case-back" href="/#projects">
             <ArrowLeft size={16} /> All projects
@@ -35,12 +32,10 @@ export function CaseStudy({
       </header>
       <main id="main" className="page-shell case-study">
         <Reveal>
-          <p className="eyebrow">
-            PROJECT / {project.number} · {project.category}
-          </p>
+          <p className="project-category">{project.category}</p>
           <h1>{project.title}</h1>
+          <p className="project-state">{project.statusLabel}</p>
           <p className="case-lead">{project.description}</p>
-          <Tags items={project.stack} />
           <div className="case-actions">
             <a
               href={project.github}
@@ -48,93 +43,103 @@ export function CaseStudy({
               target="_blank"
               rel="noopener noreferrer"
             >
-              Explore source <ArrowUpRight size={17} />
+              View source code <ArrowUpRight size={17} />
             </a>
-            <Link href="/#contact" className="button secondary">
-              Talk about this project <ArrowRight size={17} />
-            </Link>
           </div>
         </Reveal>
         <Reveal className="case-visual">
-          <ProjectPreview id={project.id} />
+          <ProjectPreview project={project} />
         </Reveal>
         <div className="case-content">
-          <CaseSection number="01" title="The project">
+          <CaseSection title="Project overview">
             <p>{project.overview}</p>
-            <h3>Problem & motivation</h3>
-            <p>{project.motivation}</p>
-            {project.story && <ProjectStory story={project.story} />}
-          </CaseSection>
-          <CaseSection number="02" title="My role & contributions">
-            <p>{project.role}</p>
-            <ul>
-              {project.contributions.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </CaseSection>
-          <CaseSection
-            number="03"
-            title={
-              project.story ? "Application features" : "Implemented features"
-            }
-          >
-            {project.story && (
-              <p className="feature-provenance">
-                From my final FYP report, with related source code linked below.
+            {project.audience && (
+              <div className="case-columns">
+                {project.audience.map((item) => (
+                  <div key={item.title}>
+                    <h3>{item.title}</h3>
+                    <p>{item.description}</p>
+                  </div>
+                ))}
+              </div>
+            )}
+            {project.pilot && (
+              <p className="case-pilot">
+                <strong>Pilot:</strong> {project.pilot.users} users and{" "}
+                {project.pilot.drivers} drivers. These are participation figures
+                from my own pilot.
               </p>
             )}
-            <ul>
-              {project.features.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
           </CaseSection>
-          <CaseSection number="04" title="Technical implementation">
-            <div className="implementation-grid">
+          <CaseSection title="Problem and objective">
+            <p>{project.problem}</p>
+            <p>
+              <strong>Objective:</strong> {project.objective}
+            </p>
+          </CaseSection>
+          <CaseSection title="Technologies used">
+            <Tags items={project.stack} />
+          </CaseSection>
+          <CaseSection title="Key features">
+            {project.featuresNote && <p>{project.featuresNote}</p>}
+            <List items={project.features} />
+          </CaseSection>
+          <CaseSection title="My contributions">
+            <p>{project.role}</p>
+            <List items={project.contributions} />
+          </CaseSection>
+          <CaseSection title="Implementation details">
+            <div className="case-columns">
               {project.implementation.map((item) => (
-                <article className="card implementation-card" key={item.title}>
+                <div key={item.title}>
                   <h3>{item.title}</h3>
                   <p>{item.description}</p>
-                </article>
+                </div>
               ))}
             </div>
           </CaseSection>
-          <CaseSection number="05" title="Challenges & decisions">
-            {project.challenges.map((item) => (
-              <div className="case-decision" key={item.title}>
-                <h3>{item.title}</h3>
-                <p>{item.description}</p>
+          {project.screenshots && (
+            <CaseSection title="Screenshots">
+              <p>
+                From my final project report. They show the FYP version, which
+                may differ from the linked repositories.
+              </p>
+              <ProjectGallery screenshots={project.screenshots} />
+            </CaseSection>
+          )}
+          <CaseSection title="Project status">
+            <div className="status-columns">
+              <div>
+                <h3>{project.status.doneTitle}</h3>
+                <ul>
+                  {project.status.done.map((item) => (
+                    <li key={item}>
+                      <Check size={16} aria-hidden="true" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-            ))}
-          </CaseSection>
-          <CaseSection number="06" title="Visuals & project scope">
-            {project.screenshots?.length ? (
-              <>
-                <p className="gallery-intro">
-                  Screenshots from my final Urban Drive project report. They show
-                  the FYP version, which may differ from the current
-                  repositories. Select any image to enlarge it.
-                </p>
-                <ProjectGallery screenshots={project.screenshots} />
-              </>
-            ) : (
-              <div className="card screenshot-placeholder">
-                <span className="eyebrow">APPLICATION SCREENSHOTS</span>
-                <h3>Screen captures to come.</h3>
-                <p>
-                  I’ll add application screenshots here. The preview above is{" "}
-                  {project.id === "steelfit"
-                    ? "the project logo"
-                    : "a placeholder illustration"}
-                  .
-                </p>
+              <div className="is-open">
+                <h3>{project.status.openTitle}</h3>
+                <ul>
+                  {project.status.open.map((item) => (
+                    <li key={item}>
+                      <Circle size={16} aria-hidden="true" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
+            </div>
+            <p>{project.status.note}</p>
+            {project.learned && (
+              <p>
+                <strong>What I learned:</strong> {project.learned}
+              </p>
             )}
-            <p className="case-scope">{project.scope}</p>
-            {project.story && <ProjectRoadmap items={project.story.roadmap} />}
           </CaseSection>
-          <CaseSection number="07" title="Explore the repositories">
+          <CaseSection title="GitHub links">
             <div className="repository-list">
               {project.repositories.map((repo) => (
                 <a
@@ -144,22 +149,16 @@ export function CaseStudy({
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <span className="eyebrow">{repo.label}</span>
                   <h3>
                     {repo.name}
-                    <ArrowUpRight size={20} />
+                    <ArrowUpRight size={20} aria-hidden="true" />
                   </h3>
                   <p>{repo.description}</p>
                 </a>
               ))}
             </div>
             <details className="case-sources">
-              <summary>Source code references</summary>
-              <p>
-                {project.story
-                  ? "This case study draws on my final Urban Drive project report, my pilot, and the source code below."
-                  : "This case study draws on the source code below."}
-              </p>
+              <summary>Source files behind this page</summary>
               <ul>
                 {project.sources.map((source) => (
                   <li key={source.url}>
@@ -178,7 +177,7 @@ export function CaseStudy({
         </div>
         <nav className="case-bottom-nav" aria-label="Project navigation">
           <Link href="/#projects">
-            <ArrowLeft size={17} /> Back to selected work
+            <ArrowLeft size={17} /> All projects
           </Link>
           <Link href={`/projects/${nextProject.slug}`}>
             <span>
@@ -190,32 +189,35 @@ export function CaseStudy({
       </main>
       <footer className="page-shell footer">
         <p>
-          © {new Date().getFullYear()} {portfolio.name}.
+          © {new Date().getFullYear()} {portfolio.name}
         </p>
-        <Link href="/#contact">
-          Let’s talk <ArrowUpRight size={14} />
-        </Link>
+        <Link href="/#contact">Contact</Link>
       </footer>
     </>
   );
 }
 
 function CaseSection({
-  number,
   title,
   children,
 }: {
-  number: string;
   title: string;
-  children: React.ReactNode;
+  children: ReactNode;
 }) {
   return (
     <section className="case-section">
-      <Reveal heading>
-        <p className="eyebrow">{number} / CASE STUDY</p>
-        <h2>{title}</h2>
-      </Reveal>
+      <h2>{title}</h2>
       {children}
     </section>
+  );
+}
+
+function List({ items }: { items: string[] }) {
+  return (
+    <ul className="case-list">
+      {items.map((item) => (
+        <li key={item}>{item}</li>
+      ))}
+    </ul>
   );
 }

@@ -1,21 +1,35 @@
 import { publicPath } from "@/lib/paths";
+
+type Entry = { title: string; description: string };
 export type Project = {
   id: string;
   slug: string;
-  number: string;
   title: string;
   category: string;
+  statusLabel: string;
   description: string;
+  highlights: string[];
   stack: string[];
   github: string;
   overview: string;
-  motivation: string;
+  audience?: Entry[];
+  pilot?: { users: number; drivers: number };
+  problem: string;
+  objective: string;
+  features: string[];
+  featuresNote?: string;
   role: string;
   contributions: string[];
-  features: string[];
-  implementation: { title: string; description: string }[];
-  challenges: { title: string; description: string }[];
-  scope: string;
+  implementation: Entry[];
+  screenshots?: ProjectScreenshot[];
+  status: {
+    doneTitle: string;
+    done: string[];
+    openTitle: string;
+    open: string[];
+    note: string;
+  };
+  learned?: string;
   repositories: {
     name: string;
     label: string;
@@ -23,16 +37,6 @@ export type Project = {
     description: string;
   }[];
   sources: { label: string; url: string }[];
-  story?: {
-    status: string;
-    pilot?: { users: number; drivers: number };
-    audience: { title: string; description: string }[];
-    journey: { title: string; description: string }[];
-    process: { title: string; description: string }[];
-    roadmap: { title: string; description: string }[];
-    reflection: string;
-  };
-  screenshots?: ProjectScreenshot[];
 };
 
 export type ProjectScreenshot = {
@@ -49,165 +53,77 @@ export const projects: Project[] = [
   {
     id: "drive",
     slug: "urban-drive",
-    number: "01",
     title: "Urban Drive / PerdaRide",
-    category: "Independent final year project · E-hailing",
+    category: "Final year project · E-hailing",
+    statusLabel: "Academic project, tried in a small pilot",
     description:
-      "A campus e-hailing project built to replace scattered WhatsApp bookings with connected rider, driver, and admin workflows. Developed independently and tried in a small student/driver pilot.",
-    stack: [
-      "Flutter",
-      "Dart",
-      "PHP",
-      "Firebase",
-      "Mapbox",
-      "Node.js",
-      "Express",
+      "A campus e-hailing system that replaces WhatsApp ride bookings with connected rider, driver, and admin screens. I built it independently and tried it with 15 users and 5 drivers.",
+    highlights: [
+      "Rider and driver app in Flutter, with Firebase accounts, bookings, ride status, and chat",
+      "PHP admin panel for driver applications, rides, fares, and commissions",
+      "Node.js service for driver commission payments through ToyyibPay",
     ],
+    stack: ["Flutter", "Dart", "PHP", "Firebase", "Mapbox", "Node.js", "Express"],
     github: `${github}/PerdaRide-App`,
     overview:
-      "Urban Drive is my independently developed final year project for Institut Kemahiran Tinggi Perda-Tech. It brings campus ride booking, driver trip management, and web-based administration into one project. It was tried in a small student/driver pilot. The final report documents the academic application; the linked repositories include the related PerdaRide Flutter remake, PHP admin panel, and ToyyibPay service.",
-    motivation:
-      "Campus transport bookings were arranged manually through WhatsApp, leaving ride details scattered across messages. Unread requests, incomplete information, overlapping bookings, and difficult-to-track payment records motivated a central place to book, manage, and review journeys.",
-    role: "Independent developer responsible for requirements, interface design, mobile and web implementation, backend integration, testing, and the final project report.",
-    contributions: [
-      "Translated campus booking problems into separate rider, driver, and administrator workflows.",
-      "Designed interfaces in Figma and built the mobile application using Flutter and Dart, including map-based pickup and destination selection.",
-      "Integrated Firebase Authentication and Realtime Database for accounts, bookings, ride status, and driver data.",
-      "Built the PHP web admin interface and connected the ToyyibPay commission-payment service.",
-      "Tested the application using Android devices/emulators and Firebase tools, and documented the design, implementation, and findings.",
+      "Urban Drive is my final year project for Institut Kemahiran Tinggi Perda-Tech. It covers ride booking, driver trip management, and web-based administration. PerdaRide is my related Flutter remake of the mobile app, and it is the version in the linked repository.",
+    audience: [
+      {
+        title: "Riders",
+        description:
+          "Choose locations, review the fare and passenger capacity, request a ride, and follow its status.",
+      },
+      {
+        title: "Drivers",
+        description:
+          "Apply for approval, accept bookings, update trip stages, and review earnings and commissions.",
+      },
+      {
+        title: "Administrators",
+        description:
+          "Review driver applications, monitor rides, set fares, and manage records in a web dashboard.",
+      },
     ],
+    pilot: { users: 15, drivers: 5 },
+    problem:
+      "Campus rides were arranged manually through WhatsApp. Requests went unread, details were incomplete, bookings overlapped, and payments were hard to track.",
+    objective:
+      "Give riders, drivers, and administrators one place to book, manage, and review trips.",
+    featuresNote:
+      "Based on my final report, with related source code linked below.",
     features: [
-      "Rider pickup and drop-off selection, route preview, estimated fare, payment-method selection, and passenger-capacity options.",
-      "Driver registration with document submission and approval status, booking acceptance, arrival, start-ride, and completion screens.",
-      "Ride-status updates, rider–driver chat, trip history, notifications, and driver earnings views.",
-      "Web administration for ride monitoring, driver applications, fare settings, commission deadlines, users, feedback, and reports.",
-      "ToyyibPay commission-payment flow, supported by bill-creation and callback code in the related service.",
+      "Pickup and drop-off selection, route preview, estimated fare, payment method, and passenger capacity.",
+      "Driver registration with document submission and approval, booking acceptance, arrival, ride start, and completion.",
+      "Ride status updates, rider–driver chat, trip history, notifications, and driver earnings.",
+      "Web administration for rides, driver applications, fares, commission deadlines, users, feedback, and reports.",
+      "Driver commission payments through ToyyibPay.",
+    ],
+    role: "Sole developer, from requirements to the final report.",
+    contributions: [
+      "Documented the WhatsApp booking problems, compared existing e-hailing interfaces, and planned the work with a Gantt chart, following a waterfall process.",
+      "Designed the Figma screens, rider/driver/admin flowcharts, and data model.",
+      "Built the mobile app in Flutter and Dart, including map-based location selection.",
+      "Integrated Firebase Authentication and Realtime Database for accounts, bookings, and ride status.",
+      "Built the PHP admin interface and connected the ToyyibPay payment service.",
+      "Tested on Android devices and emulators, ran the pilot, and wrote the report.",
     ],
     implementation: [
       {
-        title: "Mobile application",
+        title: "Two drivers, one booking",
         description:
-          "The report documents Flutter/Dart screens for riders and drivers and Mapbox-based location functionality. Firebase Authentication handles accounts; Realtime Database synchronizes bookings and trip data. In the related PerdaRide remake, BookingRepository centralizes booking writes and streams.",
+          "In PerdaRide, accepting a booking runs as a Firebase transaction. It only succeeds while the booking is pending and has no driver, so a second driver can’t overwrite the first.",
       },
       {
-        title: "Admin and backend",
+        title: "Shared booking data",
         description:
-          "The report’s web administration interface uses HTML, CSS, and PHP. The related AdminUrbanDrive repository contains session-gated pages for rides, driver applications, users, fares, and commissions. Its ride-management code reads the mobile booking schema.",
+          "BookingRepository keeps booking writes and live streams in one place. The admin ride page reads the same booking fields, normalizes statuses, and looks up rider and driver names.",
       },
       {
-        title: "Payment service",
+        title: "Commission payments",
         description:
-          "The report shows a driver commission-payment flow through ToyyibPay. The related Node.js/Express service creates bills, receives callbacks, and writes Firebase payment records. Rider fare choices and driver commission settlement are separate flows.",
+          "The Flutter app asks the Node.js/Express service to create a bill, checks the response, and opens the ToyyibPay page. The service handles provider callbacks and records payments in Firebase.",
       },
     ],
-    challenges: [
-      {
-        title: "Turning chat-based requests into a clear journey",
-        description:
-          "The report identifies incomplete messages, unread requests, and unstructured records as the initial problems. The application introduces explicit pickup, destination, fare, passenger-capacity, and trip-status screens instead of relying on a message thread.",
-      },
-      {
-        title: "Keeping booking data consistent",
-        description:
-          "The admin ride page explicitly handles the mobile app’s userId, driverId, pickupAddress, fareLabel, and createdAt fields, normalizes statuses, and resolves names from user and driver records.",
-      },
-      {
-        title: "Connecting mobile payments to the backend",
-        description:
-          "The Flutter payment service serializes a bill request, checks HTTP status, validates the returned payment URL, and launches the external payment page. The Express service handles provider callbacks separately.",
-      },
-    ],
-    scope:
-      "This was an academic project that I tried in a small pilot with 15 users and 5 drivers. The features and screenshots come from my final project report, and the linked repositories include a related Flutter remake. It hasn’t been released commercially, and I didn’t measure performance gains. There is no public demo.",
-    story: {
-      status: "FYP · Small student/driver pilot",
-      pilot: { users: 15, drivers: 5 },
-      audience: [
-        {
-          title: "Riders",
-          description:
-            "Choose locations, review the fare and passenger capacity, request a ride, and follow its status.",
-        },
-        {
-          title: "Drivers",
-          description:
-            "Apply for approval, accept suitable bookings, update trip stages, and review earnings and commissions.",
-        },
-        {
-          title: "Administrators",
-          description:
-            "Review driver applications, monitor rides, configure fares, and manage records through a web dashboard.",
-        },
-      ],
-      journey: [
-        {
-          title: "Choose a journey",
-          description:
-            "Select pickup and destination, review the route and estimated fare, and choose a capacity and payment method.",
-        },
-        {
-          title: "Accept a booking",
-          description:
-            "A driver reviews the request, pickup and drop-off details, fare, and passenger package before accepting.",
-        },
-        {
-          title: "Manage the ride",
-          description:
-            "Progress through arrival, ride start, and completion, with status updates and rider–driver communication.",
-        },
-        {
-          title: "Review the records",
-          description:
-            "Drivers review trip and earning records; administrators monitor rides, fares, and commissions.",
-        },
-      ],
-      process: [
-        {
-          title: "Analyse & plan",
-          description:
-            "Documented WhatsApp booking problems, compared existing e-hailing interfaces, defined objectives, and planned the work using a Gantt chart.",
-        },
-        {
-          title: "Design",
-          description:
-            "Prepared Figma interface designs, rider/driver/admin flowcharts, and a conceptual data model before implementation.",
-        },
-        {
-          title: "Build & test",
-          description:
-            "Implemented the mobile and web interfaces, integrated Firebase and payment services, and tested with Android devices/emulators and Firebase Console.",
-        },
-        {
-          title: "Demonstrate & reflect",
-          description:
-            "Prepared the final report and assessment demonstration. A small student/driver pilot provided experience beyond the development environment.",
-        },
-      ],
-      roadmap: [
-        {
-          title: "More dependable ride updates",
-          description:
-            "Improve location accuracy and notification timeliness, particularly while riders are waiting for a driver.",
-        },
-        {
-          title: "Clearer payment history",
-          description:
-            "Provide more detailed transaction records and clearer daily/monthly earnings summaries.",
-        },
-        {
-          title: "Broader payment options",
-          description:
-            "Evaluate additional e-wallet, FPX, or card options. These are ideas for future work and aren’t built yet.",
-        },
-        {
-          title: "Emergency assistance",
-          description:
-            "Explore an emergency-help action and define how assistance would be requested and handled during a trip.",
-        },
-      ],
-      reflection:
-        "The report highlights the value of analysing requirements before designing screens, keeping rider and driver data synchronized, and planning implementation time. It covers what the application does; formal test results and measuring the pilot’s impact would be good next steps.",
-    },
     screenshots: [
       {
         src: publicPath("/projects/urban-drive/rider-dashboard.webp"),
@@ -264,6 +180,25 @@ export const projects: Project[] = [
         height: 490,
       },
     ],
+    status: {
+      doneTitle: "Implemented",
+      done: [
+        "Rider and driver mobile app",
+        "PHP web admin panel",
+        "ToyyibPay commission payment flow",
+        "Small pilot with students and drivers",
+      ],
+      openTitle: "Proposed, not built",
+      open: [
+        "More accurate location and timelier notifications while waiting for a driver",
+        "Detailed transaction history and daily/monthly earnings summaries",
+        "More e-wallet, FPX, or card payment options",
+        "Emergency assistance during a trip",
+      ],
+      note: "This was an academic project. It hasn’t been released commercially, I didn’t measure performance gains, and there is no public demo.",
+    },
+    learned:
+      "Analysing requirements before designing screens, keeping rider and driver data synchronized, and planning implementation time. Formal test results and measuring the pilot’s impact would be good next steps.",
     repositories: [
       {
         name: "PerdaRide-App",
@@ -313,14 +248,20 @@ export const projects: Project[] = [
   {
     id: "readytech",
     slug: "readytech",
-    number: "02",
     title: "ReadyTech",
     category: "Personal project · IT service marketplace",
+    statusLabel: "In early development",
     description:
-      "A Flutter and Supabase project for IT service requests, with authentication, database-enforced job workflows, technician matching functions, and a Next.js admin console.",
+      "An IT repair marketplace for customers and technicians. Accounts, device management, the database, and the admin console are built. Customer service requests are not built yet.",
+    highlights: [
+      "Flutter app with sign-up, sign-in, and device management, using BLoC and dependency injection",
+      "PostgreSQL rules on Supabase for row-level security and job status changes",
+      "Next.js admin console for technician verification, jobs, disputes, and pricing",
+    ],
     stack: [
       "Flutter",
       "Dart",
+      "BLoC",
       "Supabase",
       "PostgreSQL",
       "Next.js",
@@ -328,52 +269,59 @@ export const projects: Project[] = [
     ],
     github: `${github}/readytech`,
     overview:
-      "ReadyTech explores an on-demand IT service marketplace connecting customers and technicians. Its repository separates a Flutter application, a Supabase backend, and a Next.js administrator console. It’s at the foundation stage, with a broader repair-service lifecycle planned around it.",
-    motivation:
-      "Explore how customers and technicians can coordinate service requests with explicit roles, controlled status changes, and reviewable administration.",
-    role: "Personal development project. This case study covers what’s in my public repository; ReadyTech hasn’t been released as a live marketplace.",
-    contributions: [
-      "Built a Flutter application organized around repositories, BLoC state management, routing, and dependency injection.",
-      "Implemented Supabase database migrations and backend functions for the service domain.",
-      "Developed a Next.js admin console with technician-document review and status actions.",
-    ],
+      "ReadyTech is a personal project for requesting IT repair from nearby technicians. The repository holds a Flutter app, a Supabase backend, and a Next.js admin console.",
+    problem:
+      "In an IT repair, the customer and the technician have little way to check each other’s claims about the fault, the price, or the work done.",
+    objective:
+      "Coordinate repairs with clear roles, controlled status changes, and an administrator who can review the records.",
     features: [
-      "Authentication session restoration, sign-out, and profile resolution in a central AuthBloc.",
-      "PostgreSQL service-status transition rules and trigger-based enforcement.",
-      "Database functions for technician ranking and serialized job acceptance.",
-      "Admin actions for technician approval, rejection, suspension, and document review.",
+      "Sign-up as a customer or technician, sign-in, password reset, email verification, and session restore.",
+      "Customer device list and add-device screens.",
+      "Job status rules stored in PostgreSQL and enforced by a database trigger.",
+      "Database functions for ranking technicians and accepting a job.",
+      "Admin console with technician approval, document review, job and dispute handling, catalogue, pricing, and an audit log.",
+    ],
+    role: "Personal project covering the Flutter app, database, and admin console.",
+    contributions: [
+      "Flutter app structure with repositories, BLoC state management, routing, and dependency injection.",
+      "Supabase migrations for the schema, row-level security, job lifecycle, and matching.",
+      "Next.js admin console that signs in as an ordinary Supabase user and calls restricted database functions.",
+      "Dart, Vitest, and SQL tests in the repository.",
     ],
     implementation: [
       {
-        title: "Flutter client",
+        title: "App structure",
         description:
-          "The app uses flutter_bloc, get_it, go_router, and supabase_flutter. Its auth repository and AuthBloc separate session handling from presentation.",
+          "Uses flutter_bloc, get_it, go_router, and supabase_flutter. The auth repository and AuthBloc keep session handling separate from the screens.",
       },
       {
-        title: "Supabase backend",
+        title: "Job status rules",
         description:
-          "SQL migrations define the service domain, lifecycle transitions, row-level security, matching, storage, and realtime configuration. Matching logic is implemented in PostgreSQL functions.",
+          "Allowed transitions and who may make them are stored in a table. A database trigger checks every write, so the rules don’t depend on the UI.",
       },
       {
-        title: "Administration",
+        title: "Job acceptance",
         description:
-          "The Next.js console uses server actions and Supabase RPCs for administrative operations, including technician and verification decisions.",
+          "Job acceptance is serialized in the database, so technicians can’t both take one job. I haven’t load-tested it under concurrent requests.",
       },
     ],
-    challenges: [
-      {
-        title: "Preventing invalid job transitions",
-        description:
-          "The lifecycle migration stores allowed state transitions and actors, then checks writes through a database trigger rather than relying solely on UI controls.",
-      },
-      {
-        title: "Avoiding competing job assignments",
-        description:
-          "The matching migration implements server-side ranking and serialized acceptance logic. I haven’t load-tested its behavior under concurrent requests.",
-      },
-    ],
-    scope:
-      "ReadyTech is still in development and isn’t a public service. The end-to-end repair features described in the README are planned for later phases. There is no public demo to link yet.",
+    status: {
+      doneTitle: "Built",
+      done: [
+        "Accounts and authentication",
+        "Customer device management",
+        "Database schema, security rules, and job lifecycle",
+        "Admin console",
+      ],
+      openTitle: "Not built yet",
+      open: [
+        "Reporting a problem and creating a service request in the app",
+        "Technician availability and job requests in the app",
+        "Live tracking, notifications, and chat screens",
+        "Diagnosis, quotation, payment, and review screens",
+      ],
+      note: "ReadyTech isn’t a public service, and there is no demo yet. The README also describes later phases that are still planned.",
+    },
     repositories: [
       {
         name: "readytech",
@@ -413,55 +361,70 @@ export const projects: Project[] = [
   {
     id: "steelfit",
     slug: "steelfit",
-    number: "03",
     title: "SteelFit",
-    category: "Academic project · Native Android",
+    category: "Semester 4 project · Native Android",
+    statusLabel: "Academic prototype",
     description:
-      "A Java Android gym-trainer application exploring account access, trainer discovery, trainer booking, and SQL Server data integration.",
+      "A native Android gym app written in Java with XML layouts and SQL Server. It covers login, registration, adding trainers, and browsing a trainer list.",
+    highlights: [
+      "Login with separate user and admin screens",
+      "Trainer list loaded from SQL Server on a background thread",
+      "Add-trainer form with a duplicate-name check",
+    ],
     stack: ["Java", "Android", "XML layouts", "SQL Server", "JDBC"],
     github: `${github}/SteelFit`,
     overview:
-      "SteelFit is a semester project built with native Android activities and XML layouts. It has login and registration screens, trainer-list retrieval, profile-image rendering, and trainer booking. In my working version, users could save a booking and view it afterwards; the public code doesn’t include that complete flow.",
-    motivation:
-      "Explore a mobile interface for finding gym trainers while practising Android screen navigation, list rendering, and database-backed functionality.",
-    role: "Academic application development project. This summary covers what’s in the public Java and layout files.",
-    contributions: [
-      "Developed Java Android activities and XML-based interfaces.",
-      "Implemented database-backed trainer-list retrieval and RecyclerView presentation.",
-      "Worked with account-access screens and trainer-selection navigation.",
-    ],
+      "SteelFit is a Semester 4 project built with native Android activities and XML layouts, connected to SQL Server.",
+    problem:
+      "A coursework exercise: a mobile interface for finding gym trainers.",
+    objective:
+      "Practise native Android development: screen navigation, list rendering, forms, and database access.",
     features: [
-      "Login flow with database-backed account checks.",
-      "Trainer-list queries returning name, specialization, experience, and image data.",
-      "RecyclerView adapter binding trainer details and decoding stored image bytes.",
-      "Booking-related navigation passing trainer identifiers between activities.",
+      "Registration and login that check user records in SQL Server.",
+      "Different screens for users and administrators, based on the stored role.",
+      "Trainer list showing name, age, specialization, experience, and photo.",
+      "Admin form to add a trainer, with a check for existing names.",
+    ],
+    role: "Academic project. This page covers what is in the public Java and layout files.",
+    contributions: [
+      "Java activities and XML layouts.",
+      "Login, registration, and add-trainer database operations with prepared statements.",
+      "Trainer list using RecyclerView and a custom adapter.",
     ],
     implementation: [
       {
         title: "Native Android UI",
         description:
-          "Java activities use AndroidX, Material components, XML layouts, and RecyclerView to display trainer information.",
+          "Java activities with AndroidX, Material components, XML layouts, and RecyclerView.",
       },
       {
-        title: "Database integration",
+        title: "SQL Server access",
         description:
-          "The Gradle configuration includes jTDS, and the booking activity queries SQL Server trainer records using JDBC prepared statements. Database work runs on a background thread before updating the UI.",
+          "Uses the jTDS driver and JDBC prepared statements. BookingActivity loads trainers on a background thread, then updates the list on the UI thread.",
       },
       {
-        title: "Project boundaries",
+        title: "Trainer photos",
         description:
-          "My working version could save and show bookings. In the public code, ViewBooking and ManageTrainer contain only layout scaffolding, so the full booking flow can’t be reviewed there.",
+          "BookingAdapter decodes image bytes from the database and shows them in the list.",
       },
     ],
-    challenges: [
-      {
-        title: "Displaying database records on Android",
-        description:
-          "BookingActivity collects trainer rows on a background thread and updates its list on the UI thread. BookingAdapter decodes profile images from database byte arrays.",
-      },
-    ],
-    scope:
-      "SteelFit is an academic prototype. Booking worked in my version, but the public code is incomplete: its booking and management screens are only scaffolding. I don’t have screenshots of the working app.",
+    status: {
+      doneTitle: "Implemented in the public code",
+      done: [
+        "Registration and login",
+        "User and admin navigation",
+        "Trainer list",
+        "Adding a trainer",
+      ],
+      openTitle: "Unfinished in the public code",
+      open: [
+        "Saving a booking",
+        "Viewing bookings (layout only)",
+        "Managing trainers (layout only)",
+        "Saving the selected trainer photo",
+      ],
+      note: "Booking worked in my own copy of the app, but that code isn’t in the public repository, so I don’t list it as implemented here. I don’t have screenshots of the app.",
+    },
     repositories: [
       {
         name: "SteelFit",

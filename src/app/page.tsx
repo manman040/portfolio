@@ -1,4 +1,4 @@
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUp } from "lucide-react";
 import { Navbar } from "@/components/navbar";
 import {
   About,
@@ -20,22 +20,23 @@ export default function Home() {
       <Navbar />
       <main id="main" className="page-shell">
         <Hero />
-        <About />
-        <Skills />
         <Projects />
         <Experience />
+        <Skills />
+        <About />
         <Contact />
       </main>
       <footer className="footer page-shell">
         <a className="logo" href="#home">
           {portfolio.initials}
           <span>.</span>
+          <span className="sr-only"> {portfolio.name}, home</span>
         </a>
         <p>
-          © {new Date().getFullYear()} {portfolio.name}. Built with intention.
+          © {new Date().getFullYear()} {portfolio.name}
         </p>
         <a href="#home">
-          Back to top <ArrowUpRight size={14} />
+          Back to top <ArrowUp size={14} />
         </a>
       </footer>
     </>

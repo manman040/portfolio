@@ -1,89 +1,58 @@
-import { publicPath } from "@/lib/paths";
 import Image from "next/image";
-import { Check, Code2, Smartphone, Wrench } from "lucide-react";
+import { Check, Circle } from "lucide-react";
+import type { Project } from "@/data/projects";
+import { publicPath } from "@/lib/paths";
 
-export function ProjectPreview({ id }: { id: string }) {
-  if (id === "drive")
+export function ProjectPreview({ project }: { project: Project }) {
+  if (project.id === "drive")
     return (
-      <div className="project-preview preview-drive-report">
-        <span className="preview-caption">
-          SCREENSHOTS · FINAL FYP REPORT
-        </span>
-        <div className="report-preview-copy">
-          <span>CAMPUS TRANSPORT, CONNECTED.</span>
-          <strong>Urban Drive</strong>
-          <p>Rider → Driver → Admin</p>
-        </div>
-        <div className="report-preview-screens">
-          <div className="report-phone report-phone-one">
-            <Image
-              src={publicPath("/projects/urban-drive/rider-dashboard.webp")}
-              alt="Urban Drive rider dashboard captured in the final FYP report"
-              width={438}
-              height={974}
-              sizes="(max-width: 520px) 110px, 145px"
-            />
-          </div>
-          <div className="report-phone report-phone-two">
-            <Image
-              src={publicPath("/projects/urban-drive/booking-preview.webp")}
-              alt="Urban Drive booking preview with route, fare, and passenger package from the final report"
-              width={416}
-              height={926}
-              sizes="(max-width: 520px) 110px, 145px"
-            />
-          </div>
-        </div>
+      <div className="project-preview preview-drive">
+        <Image
+          src={publicPath("/projects/urban-drive/rider-dashboard.webp")}
+          alt="Urban Drive rider screen for choosing a pickup location"
+          width={438}
+          height={974}
+        />
+        <Image
+          src={publicPath("/projects/urban-drive/booking-preview.webp")}
+          alt="Urban Drive booking preview with route, fare, and passenger package"
+          width={416}
+          height={926}
+        />
       </div>
     );
-  if (id === "steelfit")
+  if (project.id === "steelfit")
     return (
       <div className="project-preview preview-steelfit">
-        <span className="preview-caption">
-          PROJECT LOGO
-        </span>
         <Image
           src={publicPath("/projects/steelfit-logo.webp")}
-          alt="SteelFit gym project logo from its Android repository"
+          alt="SteelFit project logo"
           width={250}
           height={200}
-          sizes="(max-width: 520px) 230px, 250px"
-          className="steelfit-artwork"
         />
       </div>
     );
   return (
-    <div
-      className={`project-preview preview-${id}`}
-      aria-label="Placeholder for ReadyTech screenshots"
-      role="img"
-    >
-      <span className="preview-caption">
-        PLACEHOLDER · SCREENSHOTS TO COME
-      </span>
-      <div className="readytech-art">
-        <div className="readytech-symbol">
-          <Wrench size={38} strokeWidth={1.4} />
-        </div>
-        <strong>ReadyTech</strong>
-        <p>From request to resolution.</p>
-        <div className="readytech-flow">
+    <div className="project-preview preview-status">
+      <p>Development status</p>
+      <ul>
+        {project.status.done.map((item) => (
+          <li key={item}>
+            <Check size={15} aria-hidden="true" />
+            <span>
+              <span className="sr-only">Built: </span>
+              {item}
+            </span>
+          </li>
+        ))}
+        <li className="is-open">
+          <Circle size={15} aria-hidden="true" />
           <span>
-            <Smartphone size={18} />
-            Request
+            <span className="sr-only">Not built yet: </span>
+            Customer service requests
           </span>
-          <i />
-          <span>
-            <Code2 size={18} />
-            Match
-          </span>
-          <i />
-          <span>
-            <Check size={18} />
-            Resolve
-          </span>
-        </div>
-      </div>
+        </li>
+      </ul>
     </div>
   );
 }

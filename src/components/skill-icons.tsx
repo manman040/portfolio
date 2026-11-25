@@ -1,7 +1,5 @@
 import Image from "next/image";
 import {
-  Braces,
-  Bug,
   Code2,
   Database,
   Network,
@@ -24,6 +22,7 @@ const logos: Record<string, string> = {
   MySQL: "mysql",
   "Microsoft SQL Server": "microsoftsqlserver",
   Firebase: "firebase",
+  Supabase: "supabase",
   Git: "git",
   GitHub: "github",
   "VS Code": "vscode",
@@ -40,10 +39,8 @@ const logos: Record<string, string> = {
 const symbols: Record<string, LucideIcon> = {
   SQL: Database,
   "REST APIs": Network,
-  "JSON integration": Braces,
   RBAC: ShieldCheck,
   "Database design": Workflow,
-  Debugging: Bug,
 };
 
 export function SkillIcons({ items }: { items: string[] }) {
@@ -59,11 +56,11 @@ export function SkillIcons({ items }: { items: string[] }) {
                 <Image
                   src={publicPath(`/skills/${logo}.svg`)}
                   alt=""
-                  width={34}
-                  height={34}
+                  width={20}
+                  height={20}
                 />
               ) : (
-                <Symbol size={30} strokeWidth={1.6} aria-hidden="true" />
+                <Symbol size={18} strokeWidth={1.8} aria-hidden="true" />
               )}
             </span>
             <span className="skill-name">{item}</span>

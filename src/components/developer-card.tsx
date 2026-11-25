@@ -1,7 +1,6 @@
 "use client";
 
 import { BadgePortrait } from "./badge-portrait";
-import { useReducedMotion } from "motion/react";
 import { useCardPhysics } from "./use-card-physics";
 import {
   ArrowUpRight,
@@ -15,13 +14,10 @@ import { portfolio } from "@/data/portfolio";
 
 export function DeveloperCard() {
   const [flipped, setFlipped] = useState(false);
-  const reduced = useReducedMotion();
   const { areaRef, bodyRef, cordRef, hintRef } = useCardPhysics();
 
   return (
     <div className="developer-card-scene">
-      <div className="card-orbit" aria-hidden="true" />
-      <div className="card-orbit card-orbit-outer" aria-hidden="true" />
       <div className="card-physics-area" ref={areaRef}>
         <svg
           className="physics-lanyard"
@@ -41,7 +37,7 @@ export function DeveloperCard() {
             >
               <div className="badge-hole" />
               <div className="badge-topline">
-                <span>AIMAN.DEV</span>
+                <span>JUNIOR</span>
                 <Code2 size={17} />
               </div>
               <div className="badge-title">
@@ -59,7 +55,7 @@ export function DeveloperCard() {
                 </span>
               </div>
               <div className="badge-footer">
-                <span>Laravel / Flutter / Web</span>
+                <span>Flutter / Java / Laravel</span>
                 <div className="badge-bars" aria-hidden="true" />
               </div>
             </div>
@@ -72,19 +68,14 @@ export function DeveloperCard() {
                 {portfolio.initials}
                 <span>.</span>
               </span>
-              <p className="eyebrow">THOUGHTFUL CODE.</p>
-              <h3>
-                Let’s build
-                <br />
-                <span>something useful.</span>
-              </h3>
+              <p className="badge-back-title">{portfolio.headline}</p>
               <div className="badge-contact-links">
                 {portfolio.email && (
                   <a
                     tabIndex={flipped ? 0 : -1}
                     href={`mailto:${portfolio.email}`}
                   >
-                    <Mail size={16} /> Say hello <ArrowUpRight size={15} />
+                    <Mail size={16} /> Email <ArrowUpRight size={15} />
                   </a>
                 )}
                 {portfolio.github && (
@@ -94,7 +85,7 @@ export function DeveloperCard() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Explore my GitHub <ArrowUpRight size={15} />
+                    GitHub <ArrowUpRight size={15} />
                   </a>
                 )}
               </div>
@@ -105,17 +96,15 @@ export function DeveloperCard() {
       </div>
       <div className="card-interaction-bar">
         <span ref={hintRef}>
-          {reduced ? "A little more about me" : "Drag my ID card"}
+          <span className="hint-motion">Drag or flip the card</span>
+          <span className="hint-reduced">Flip for contact links</span>
         </span>
         <button
           type="button"
           onClick={() => setFlipped((value) => !value)}
           aria-pressed={flipped}
-          aria-label={
-            flipped ? "Show front of developer card" : "Flip developer card"
-          }
         >
-          <FlipHorizontal2 size={15} /> {flipped ? "Front" : "Flip card"}
+          <FlipHorizontal2 size={15} /> Flip card
         </button>
       </div>
     </div>

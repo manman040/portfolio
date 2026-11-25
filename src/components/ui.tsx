@@ -3,25 +3,16 @@ import { ArrowUpRight } from "lucide-react";
 import { Reveal } from "./reveal";
 
 export function SectionHeading({
-  number,
-  label,
   title,
   description,
 }: {
-  number: string;
-  label: string;
   title: string;
   description?: string;
 }) {
   return (
     <Reveal heading>
       <div className="section-heading">
-        <div>
-          <p className="eyebrow">
-            <span>{number}</span> {label}
-          </p>
-          <h2>{title}</h2>
-        </div>
+        <h2>{title}</h2>
         {description && <p className="section-description">{description}</p>}
       </div>
     </Reveal>
@@ -31,21 +22,22 @@ export function Destination({
   href,
   children,
   className = "",
-  download = false,
+  download,
 }: {
   href: string | null;
   children: ReactNode;
   className?: string;
-  download?: boolean;
+  /** File name offered when downloading. */
+  download?: string;
 }) {
   if (!href)
     return (
       <span
         className={`unavailable ${className}`}
-        title="Awaiting Aiman’s details"
+        title="Not available yet"
       >
         {children}
-        <span className="pending-label">Coming soon</span>
+        <span className="pending-label">Not available</span>
       </span>
     );
   const external = /^https?:/.test(href);
@@ -53,7 +45,7 @@ export function Destination({
     <a
       className={className}
       href={href}
-      download={download || undefined}
+      download={download}
       target={external && !download ? "_blank" : undefined}
       rel={external ? "noopener noreferrer" : undefined}
     >

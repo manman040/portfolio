@@ -5,66 +5,70 @@ export const portfolio = {
   initials: "AF",
   // Made with: node scripts/prepare-portrait.mjs <photo>. Use null for the monogram.
   portrait: "/portrait" as string | null,
-  headline: "Software Developer | Laravel | Flutter | Web & Backend Development",
+  headline: "Junior Software Developer",
   location: "Penang, Malaysia",
-  availability: "Open to Software Development Opportunities",
+  availability: "Open to software development roles",
   intro:
-    "I build intuitive mobile applications, thoughtful web experiences, and practical software solutions. Currently in application support, working towards my next chapter in software development.",
-  biography:
-    "I enjoy turning an idea into something people can actually use. From independently building my college e-hailing project to developing Laravel and Flutter modules during my internship and supporting manufacturing applications today, I’m building a grounded understanding of how software works in the real world.",
+    "Computer Technology graduate with hands-on experience in mobile and web development using Flutter, Java, PHP, and Laravel, gained through academic projects and a six-month programming internship. I currently support manufacturing applications at Jabil.",
+  about: [
+    "For my final year project, I independently built an e-hailing app for my college, from the requirements and Figma screens to the Flutter app, Firebase data, and PHP admin panel. During my internship I worked with a development team on Laravel web modules, Flutter mobile modules, REST APIs, and MySQL databases.",
+    "In my current role I support in-house manufacturing applications and troubleshoot station issues on the production floor. I’m looking for a software development role where I can keep developing these skills through practical engineering work.",
+  ],
   education: {
     qualification: "Diploma in Computer Technology",
     institution: "Institut Kemahiran Tinggi Perda-Tech",
     completed: "Completed June 2026",
-    graduation: "Convocation November 2027",
-    cgpa: "CGPA 3.82",
+    cgpa: "3.82",
   },
   career: {
     roles: "Software Developer, Application Developer, Junior Developer, and Programmer",
-    location: "Penang",
-    workArrangement: "Open to on-site and remote roles",
-    notice: "Start date subject to notice period with current employer",
+    workArrangement: "On-site in Penang, or remote",
+    notice: "Subject to notice period with current employer",
   },
   email: "aimanjamili46@gmail.com" as string | null,
   github: "https://github.com/manman040" as string | null,
   linkedin: "https://www.linkedin.com/in/aiman-jamili" as string | null,
   resume: publicPath("/resume.pdf") as string | null,
+  resumeFileName: "Aiman-Farhan-Resume.pdf",
   siteUrl: (process.env.NEXT_PUBLIC_SITE_URL || null) as string | null,
 };
 export const navigation = [
-  "About",
-  "Skills",
   "Projects",
   "Experience",
+  "Skills",
+  "About",
   "Contact",
 ];
 export const skills = [
   {
-    title: "Languages",
-    code: "01",
-    items: ["Dart", "PHP", "Java", "JavaScript", "SQL", "HTML", "CSS"],
+    title: "Programming languages",
+    usedIn:
+      "Dart in Urban Drive and ReadyTech, PHP in my internship and Urban Drive’s admin panel, Java in SteelFit.",
+    items: ["Dart", "Java", "PHP", "JavaScript", "SQL", "HTML", "CSS"],
   },
   {
-    title: "Frameworks & development",
-    code: "02",
+    title: "Frameworks & platforms",
+    usedIn:
+      "Flutter in Urban Drive, ReadyTech, and my internship, Laravel in my internship, native Android in SteelFit.",
+    items: ["Flutter", "Laravel", "Android"],
+  },
+  {
+    title: "Database & backend",
+    usedIn:
+      "MySQL and REST APIs in my internship, Firebase in Urban Drive, SQL Server in SteelFit, Supabase in ReadyTech.",
     items: [
-      "Flutter",
-      "Laravel",
-      "Android",
+      "MySQL",
+      "Microsoft SQL Server",
+      "Firebase",
+      "Supabase",
       "REST APIs",
-      "JSON integration",
       "RBAC",
-      "Debugging",
+      "Database design",
     ],
   },
   {
-    title: "Data",
-    code: "03",
-    items: ["MySQL", "Microsoft SQL Server", "Firebase", "Database design"],
-  },
-  {
-    title: "Developer tools",
-    code: "04",
+    title: "Tools",
+    usedIn: "Git, GitHub, and Figma in my internship, Android Studio in SteelFit.",
     items: [
       "Git",
       "GitHub",
@@ -82,9 +86,8 @@ export const skills = [
 export { projects } from "./projects";
 export const experience = [
   {
-    date: "Sep 2026 — Present",
-    title: "Industrial Engineering Technician",
-    subtitle: "Application Support",
+    date: "Sep 2026 – Present",
+    title: "Industrial Engineering Technician (Application Support)",
     company: "Jabil Circuit · Batu Kawan, Penang",
     logo: publicPath("/companies/jabil.svg"),
     logoAlt: "Jabil",
@@ -93,15 +96,14 @@ export const experience = [
     contributedProjects: [],
     current: true,
     points: [
-      "Support manufacturing applications across production lines and troubleshoot application and station configuration issues.",
-      "Provide application support for in-house manufacturing systems, including PC, station equipment, and production route configuration.",
-      "Investigate recurring issues and possible root causes, escalate software issues to development teams, and collaborate with engineers to maintain operational continuity.",
+      "Provide application support for in-house manufacturing systems across multiple production lines.",
+      "Register and configure PCs, station equipment, and production routes.",
+      "Troubleshoot daily station issues, perform initial root cause analysis, and escalate unresolved software issues to the development team.",
     ],
   },
   {
-    date: "Jan 2026 — Jun 2026",
+    date: "Jan 2026 – Jun 2026",
     title: "Programmer (Internship)",
-    subtitle: "Laravel web and Flutter mobile development",
     company: "Myrich Dynasty Network SDN. BHD",
     logo: publicPath("/companies/mdn.webp"),
     logoAlt: "Myrich Dynasty Network",
@@ -111,28 +113,28 @@ export const experience = [
       {
         title: "Penang Smart Kariah",
         description:
-          "Infaq & Wakaf, Smart ID, Organization Chart, Announcements, Mosque Information, and Committee Management modules, with API integration and Zakat UI/UX contributions.",
+          "Developed the Infaq & Wakaf module with dynamic donation forms and input validation. Worked on Smart ID, Organization Chart, Announcements, Mosque Information, and Committee Management, API integration, and Zakat UI/UX.",
       },
       {
         title: "GoMasjid / GoMasjidPro",
         description:
-          "Flutter development, donation-related functionality, integration, and debugging as part of the team.",
+          "Flutter development, donation functionality, integration, and debugging.",
       },
       {
         title: "MasjidPro Dashboard",
         description:
-          "Committee Management and Committee Report modules, IC search, mosque categorisation, and dashboard data workflow improvements.",
+          "Built the Committee Management and Committee Report modules, IC search, and mosque categorisation, and improved dashboard data workflows.",
       },
       {
         title: "Sistem Pengurusan Bersepadu (MAINPP)",
         description:
-          "Enhancements to the Facility, Asset, Appointments, Complaints and Suggestions, Notifications, Documentation, Transfers, and Member Management modules, with UI/UX revamp work.",
+          "Enhanced the Facility, Asset, Appointments, Complaints and Suggestions, Notifications, Documentation, Transfers, and Member Management modules, and revamped the UI/UX.",
       },
     ],
     current: false,
     points: [
-      "Developed and enhanced Laravel web and Flutter mobile modules as part of the internship team.",
-      "Developed Penang Smart Kariah’s Infaq & Wakaf module, including dynamic donation forms and input validation. Built RESTful APIs to connect the Laravel (PHP) backend with the Flutter app, and worked on MySQL database structures and queries.",
+      "Developed and enhanced Laravel web and Flutter mobile modules across four production systems, as part of a development team.",
+      "Built RESTful APIs to connect the Laravel (PHP) backend with the Flutter app, and worked on MySQL database structures and queries.",
       "Implemented role-based access control and data validation, designed UI/UX in Figma, and tested and debugged features.",
     ],
   },

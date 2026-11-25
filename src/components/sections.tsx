@@ -1,242 +1,78 @@
-import { DeveloperCard } from "./developer-card";
-import { ContactHub } from "./contact-hub";
-import { SiteLink as Link } from "./site-link";
-import { Github, Linkedin } from "./brand-icons";
 import Image from "next/image";
 import {
-  ArrowDown,
   ArrowDownToLine,
   ArrowRight,
   ArrowUpRight,
-  Braces,
   Check,
-  Code2,
-  Database,
-  Globe2,
-  GraduationCap,
-  Layers3,
   Mail,
   MapPin,
-  Sparkles,
-  Terminal,
 } from "lucide-react";
-import {
-  experience,
-  portfolio,
-  projects,
-  skills,
-} from "@/data/portfolio";
-import { Destination, SectionHeading, Tags } from "./ui";
-import { Reveal } from "./reveal";
-import { SkillIcons } from "./skill-icons";
+import { experience, portfolio, projects, skills } from "@/data/portfolio";
+import { Github, Linkedin } from "./brand-icons";
+import { ContactHub } from "./contact-hub";
+import { DeveloperCard } from "./developer-card";
 import { ProjectPreview } from "./project-preview";
+import { Reveal } from "./reveal";
+import { SiteLink as Link } from "./site-link";
+import { SkillIcons } from "./skill-icons";
+import { Destination, SectionHeading, Tags } from "./ui";
 
 export function Hero() {
   return (
     <section id="home" className="hero">
-      <div className="hero-copy">
-        <Reveal>
-          <p className="availability">
-            <span className="status-dot" />
-            {portfolio.availability}
-          </p>
-          <p className="hero-hello">
-            Hey, I’m Aiman <span className="wave">✳</span>
-          </p>
-          <h1>
-            Thoughtful code.
-            <br />
-            <span>Real-world impact.</span>
-          </h1>
-          <p className="hero-role">{portfolio.headline}</p>
-          <p className="hero-description">{portfolio.intro}</p>
-          <div className="hero-actions">
-            <a href="#projects" className="button primary">
-              Explore my work <ArrowUpRight size={18} />
-            </a>
-            <Destination
-              href={portfolio.resume}
-              className="button secondary"
-              download
-            >
-              <ArrowDownToLine size={16} /> Résumé
-            </Destination>
-          </div>
-          <div className="hero-meta">
-            <span>
-              <MapPin size={14} />
-              {portfolio.location}
-            </span>
-            <span className="meta-divider" />
-            <div className="hero-socials">
-              <Destination href={portfolio.github}>
-                <Github size={14} />
-                <span className="sr-only">GitHub</span>
-              </Destination>
-              <Destination href={portfolio.linkedin}>
-                <Linkedin size={14} />
-                <span className="sr-only">LinkedIn</span>
-              </Destination>
-              <Destination
-                href={portfolio.email ? `mailto:${portfolio.email}` : null}
-              >
-                <Mail size={14} />
-                <span className="sr-only">Email</span>
-              </Destination>
-            </div>
-          </div>
-        </Reveal>
-      </div>
+      <Reveal className="hero-copy">
+        <p className="availability">
+          <span className="status-dot" />
+          {portfolio.availability}
+        </p>
+        <h1>
+          {portfolio.name}
+          <span className="hero-title">{portfolio.headline}</span>
+        </h1>
+        <p className="hero-description">{portfolio.intro}</p>
+        <div className="hero-actions">
+          <a href="#projects" className="button primary">
+            View projects <ArrowRight size={17} />
+          </a>
+          <Destination
+            href={portfolio.resume}
+            className="button secondary"
+            download={portfolio.resumeFileName}
+          >
+            <ArrowDownToLine size={16} /> Download résumé
+          </Destination>
+        </div>
+        <div className="hero-links">
+          <Destination href={portfolio.github}>
+            <Github size={16} /> GitHub
+          </Destination>
+          <Destination href={portfolio.linkedin}>
+            <Linkedin size={16} /> LinkedIn
+          </Destination>
+          <span>
+            <MapPin size={16} /> {portfolio.location}
+          </span>
+        </div>
+      </Reveal>
       <Reveal className="hero-visual hero-namecard" delay={0.12}>
         <DeveloperCard />
       </Reveal>
-      <div className="hero-bottom">
-        <span>CURIOUS MIND. BUILDER AT HEART.</span>
-        <a href="#about">
-          A little more about me <ArrowDown size={13} />
-        </a>
-      </div>
-    </section>
-  );
-}
-
-export function About() {
-  return (
-    <section id="about" className="section">
-      <SectionHeading
-        number="01"
-        label="THE PERSON BEHIND THE CODE"
-        title="A builder, always learning."
-        description="Practical experience. A curious mindset. A drive to make things work better."
-      />
-      <div className="about-grid">
-        <Reveal className="card about-bio">
-          <div className="card-icon">
-            <Braces size={22} />
-          </div>
-          <h3>More than writing code.</h3>
-          <p>{portfolio.biography}</p>
-          <div className="card-foot">
-            <GraduationCap size={16} /> Computer Technology <span>→</span>{" "}
-            Aspiring developer
-          </div>
-        </Reveal>
-        <Reveal className="card location-card" delay={0.05}>
-          <div className="location-globe">
-            <Globe2 size={134} strokeWidth={0.6} />
-            <span className="globe-point" />
-          </div>
-          <p className="eyebrow">BASED IN</p>
-          <h3>{portfolio.location}</h3>
-          <p>Local roots. A world of possibilities.</p>
-          <span className="location-time">MYT · UTC +08:00</span>
-        </Reveal>
-        <Reveal className="card focus-card">
-          <span className="card-label">
-            <Sparkles size={15} /> THE NEXT CHAPTER
-          </span>
-          <h3>
-            Building my foundations.
-            <br />
-            Expanding my possibilities.
-          </h3>
-          <div className="focus-items">
-            {[
-              "Web development",
-              "Backend development",
-              "Mobile applications",
-              "Engineering fundamentals",
-            ].map((item, index) => (
-              <span key={item}>
-                <span>0{index + 1}</span>
-                {item}
-                <ArrowUpRight size={14} />
-              </span>
-            ))}
-          </div>
-        </Reveal>
-        <Reveal className="card drive-card" delay={0.05}>
-          <span className="quote-mark">“</span>
-          <p>
-            Turning ideas into
-            <br />
-            <span>functional applications.</span>
-            <br />
-            One problem at a time.
-          </p>
-          <span className="card-label">WHAT DRIVES ME</span>
-        </Reveal>
-        <Reveal className="card education-card">
-          <span className="card-label">
-            <GraduationCap size={16} /> EDUCATION
-          </span>
-          <h3>{portfolio.education.qualification}</h3>
-          <p>{portfolio.education.institution}</p>
-          <p className="education-date">
-            {portfolio.education.cgpa} · {portfolio.education.completed} ·{" "}
-            {portfolio.education.graduation}
-          </p>
-        </Reveal>
-        <Reveal className="card journey-card">
-          <span className="card-label">THE JOURNEY SO FAR</span>
-          <div className="journey">
-            <span>
-              <Code2 size={19} />
-              <strong>Development intern</strong>
-              <small>Learning by building</small>
-            </span>
-            <ArrowRight className="journey-arrow" size={19} />
-            <span>
-              <Terminal size={19} />
-              <strong>Application support</strong>
-              <small>Understanding real systems</small>
-            </span>
-            <ArrowRight className="journey-arrow" size={19} />
-            <span className="journey-next">
-              <Sparkles size={19} />
-              <strong>Software developer</strong>
-              <small>The next chapter</small>
-            </span>
-          </div>
-        </Reveal>
-      </div>
-    </section>
-  );
-}
-
-export function Skills() {
-  const icons = [Braces, Layers3, Database, Terminal];
-  return (
-    <section id="skills" className="section">
-      <SectionHeading
-        number="02"
-        label="MY TOOLKIT"
-        title="The tools behind the work."
-        description="Technologies I’ve used across web and mobile development, backend integration, and application support."
-      />
-      <div className="skills-grid">
-        {skills.map((group, index) => {
-          const Icon = icons[index];
-          return (
-            <Reveal
-              className="card skill-card"
-              key={group.title}
-              delay={index * 0.04}
-            >
-              <div className="skill-top">
-                <Icon size={23} />
-                <span>{group.code}</span>
-              </div>
-              <h3>{group.title}</h3>
-              <SkillIcons items={group.items} />
-            </Reveal>
-          );
-        })}
-      </div>
-      <p className="section-note">
-        <span className="status-dot" /> Always adding to the toolkit. Always
-        strengthening the fundamentals.
-      </p>
+      <dl className="hero-facts">
+        <div>
+          <dt>Education</dt>
+          <dd>
+            {portfolio.education.qualification}, CGPA {portfolio.education.cgpa}
+          </dd>
+        </div>
+        <div>
+          <dt>Development</dt>
+          <dd>Six-month programming internship with Laravel and Flutter</dd>
+        </div>
+        <div>
+          <dt>Current role</dt>
+          <dd>Application support for manufacturing systems at Jabil</dd>
+        </div>
+      </dl>
     </section>
   );
 }
@@ -245,10 +81,8 @@ export function Projects() {
   return (
     <section id="projects" className="section">
       <SectionHeading
-        number="03"
-        label="SELECTED WORK"
-        title="Ideas, turned into applications."
-        description="Independent and academic work. Explore the implementation behind the featured projects."
+        title="Projects"
+        description="Academic and personal projects. Each case study separates what is built from what isn’t."
       />
       <div className="projects-grid">
         {projects.map((project, index) => (
@@ -257,32 +91,19 @@ export function Projects() {
             key={project.id}
             delay={(index % 2) * 0.06}
           >
-            <ProjectPreview id={project.id} />
+            <ProjectPreview project={project} />
             <div className="project-body">
-              <div className="project-category">
-                <span>{project.category}</span>
-                <span>/{project.number}</span>
-              </div>
+              <p className="project-category">{project.category}</p>
               <h3>{project.title}</h3>
+              <p className="project-state">{project.statusLabel}</p>
               <p>{project.description}</p>
+              <ul className="project-highlights">
+                {project.highlights.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
               <Tags items={project.stack} />
-              <details className="project-details">
-                <summary>
-                  My contribution <span>+</span>
-                </summary>
-                <ul>
-                  {project.contributions.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-              </details>
               <div className="project-links">
-                <Destination
-                  href={project.github}
-                  className="button secondary"
-                >
-                  <Github size={16} /> Source
-                </Destination>
                 <Link
                   className="button primary"
                   href={`/projects/${project.slug}`}
@@ -293,16 +114,18 @@ export function Projects() {
                   </span>
                   <ArrowRight size={17} />
                 </Link>
+                <Destination
+                  href={project.github}
+                  className="button secondary"
+                >
+                  <Github size={16} /> Source
+                  <span className="sr-only"> code for {project.title}</span>
+                </Destination>
               </div>
             </div>
           </Reveal>
         ))}
       </div>
-      <p className="section-note">
-        Previews include screenshots from my FYP report, project artwork, and a
-        placeholder where screenshots are still to come. Internship contributions are listed separately under
-        Experience.
-      </p>
     </section>
   );
 }
@@ -310,52 +133,38 @@ export function Projects() {
 export function Experience() {
   return (
     <section id="experience" className="section">
-      <SectionHeading
-        number="04"
-        label="EXPERIENCE"
-        title="Grounded in real-world work."
-        description="From developing web and mobile applications to helping keep production applications running."
-      />
+      <SectionHeading title="Experience" />
       <div className="experience-list">
         {experience.map((role) => (
           <Reveal className="experience-row" key={role.title}>
-            <article className="card experience-card">
-              <div className="role-heading">
-                <div>
-                  <p className="company">{role.company}</p>
-                  <h3>{role.title}</h3>
-                  <p className="role-subtitle">{role.subtitle}</p>
-                </div>
-              </div>
+            <article className="experience-card">
+              <h3>{role.title}</h3>
+              <p className="company">{role.company}</p>
               <ul>
                 {role.points.map((point) => (
                   <li key={point}>
-                    <Check size={14} />
+                    <Check size={14} aria-hidden="true" />
                     <span>{point}</span>
                   </li>
                 ))}
               </ul>
               {role.contributedProjects.length > 0 && (
-                <div className="internship-projects">
-                  <h4>Projects contributed to</h4>
-                  <p className="contribution-context">
-                    Team contributions during my internship at {role.company}.
-                  </p>
+                <dl className="internship-projects">
                   {role.contributedProjects.map((project) => (
                     <div key={project.title}>
-                      <strong>{project.title}</strong>
-                      <p>{project.description}</p>
+                      <dt>{project.title}</dt>
+                      <dd>{project.description}</dd>
                     </div>
                   ))}
-                </div>
+                </dl>
               )}
             </article>
-            <div className="experience-date">
-              <span>{role.date}</span>
+            <p className="experience-date">
+              {role.date}
               {role.current && (
-                <span className="current-label">CURRENT ROLE</span>
+                <span className="current-label">Current role</span>
               )}
-            </div>
+            </p>
             <a
               href={role.website}
               target="_blank"
@@ -368,13 +177,7 @@ export function Experience() {
                 size={18}
                 aria-hidden="true"
               />
-              <Image
-                src={role.logo}
-                alt={`${role.logoAlt} logo`}
-                width={180}
-                height={150}
-                sizes="(max-width: 640px) 110px, 180px"
-              />
+              <Image src={role.logo} alt="" width={180} height={150} />
             </a>
           </Reveal>
         ))}
@@ -383,48 +186,106 @@ export function Experience() {
   );
 }
 
+export function Skills() {
+  return (
+    <section id="skills" className="section">
+      <SectionHeading
+        title="Skills"
+        description="Technologies I’ve used, and where I used them."
+      />
+      <div className="skills-grid">
+        {skills.map((group) => (
+          <Reveal className="card skill-card" key={group.title}>
+            <h3>{group.title}</h3>
+            <SkillIcons items={group.items} />
+            <p>{group.usedIn}</p>
+          </Reveal>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+export function About() {
+  const { education, career } = portfolio;
+  return (
+    <section id="about" className="section">
+      <SectionHeading title="About" />
+      <div className="about-layout">
+        <Reveal className="card about-text">
+          {portfolio.about.map((paragraph) => (
+            <p key={paragraph}>{paragraph}</p>
+          ))}
+          <dl>
+            <div>
+              <dt>Looking for</dt>
+              <dd>{career.roles} roles</dd>
+            </div>
+            <div>
+              <dt>Work arrangement</dt>
+              <dd>{career.workArrangement}</dd>
+            </div>
+            <div>
+              <dt>Start date</dt>
+              <dd>{career.notice}</dd>
+            </div>
+          </dl>
+        </Reveal>
+        <Reveal className="card education-summary" delay={0.05}>
+          <h3>Education</h3>
+          <p className="education-name">{education.qualification}</p>
+          <p>{education.institution}</p>
+          <p>{education.completed}</p>
+          <p className="education-cgpa">
+            <strong>{education.cgpa}</strong> CGPA
+          </p>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
 export function Contact() {
   return (
     <section id="contact" className="section contact-section">
-      <Reveal className="card contact-card">
-        <div className="contact-glow" />
-        <p className="eyebrow">
-          <span className="status-dot" /> LET’S BUILD SOMETHING USEFUL
-        </p>
-        <h2>
-          Have an opportunity
-          <br />
-          <span>in mind?</span>
-        </h2>
-        <p>
-          I’m looking for {portfolio.career.roles} opportunities in{" "}
-          {portfolio.career.location}. {portfolio.career.workArrangement}.
-        </p>
-        <p className="contact-availability">{portfolio.career.notice}.</p>
-        <Destination
-          href={portfolio.email ? `mailto:${portfolio.email}` : null}
-          className="button primary"
-        >
-          <Mail size={17} /> Say hello <ArrowUpRight size={17} />
-        </Destination>
-        <div className="contact-links">
-          <Destination href={portfolio.github}>
-            <Github size={16} /> GitHub
+      <SectionHeading
+        title="Contact"
+        description="Email me directly or use the form."
+      />
+      <div className="contact-layout">
+        <Reveal className="contact-links">
+          <Destination
+            href={portfolio.email ? `mailto:${portfolio.email}` : null}
+          >
+            <Mail size={19} />
+            <span>
+              Email<small>{portfolio.email}</small>
+            </span>
           </Destination>
           <Destination href={portfolio.linkedin}>
-            <Linkedin size={16} /> LinkedIn
+            <Linkedin size={19} />
+            <span>
+              LinkedIn<small>aiman-jamili</small>
+            </span>
           </Destination>
-          <Destination href={portfolio.resume} download>
-            <ArrowDownToLine size={16} /> Résumé
+          <Destination href={portfolio.github}>
+            <Github size={19} />
+            <span>
+              GitHub<small>manman040</small>
+            </span>
           </Destination>
-        </div>
-        {(!portfolio.email || !portfolio.resume) && (
-          <p className="contact-note">
-            Missing contact details and résumé will be added here soon.
-          </p>
-        )}
-      </Reveal>
-      <ContactHub />
+          <Destination
+            href={portfolio.resume}
+            download={portfolio.resumeFileName}
+          >
+            <ArrowDownToLine size={19} />
+            <span>
+              Résumé<small>Download PDF</small>
+            </span>
+          </Destination>
+        </Reveal>
+        <ContactHub />
+      </div>
     </section>
   );
 }

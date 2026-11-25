@@ -26,7 +26,6 @@ export function BadgePortrait() {
           {portfolio.initials}
           <span>.</span>
         </span>
-        <span className="portrait-caption">DEV-001 / BUILDER PASS</span>
       </>
     );
 

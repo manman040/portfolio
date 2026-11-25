@@ -80,7 +80,7 @@ export function ProjectGallery({
                 </span>
               </button>
               <figcaption>
-                <span className="eyebrow">{image.group} · FROM MY FYP REPORT</span>
+                <p className="gallery-group">{image.group}</p>
                 <h3>{image.title}</h3>
                 <p>{image.caption}</p>
               </figcaption>

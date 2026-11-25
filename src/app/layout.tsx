@@ -3,10 +3,11 @@ import "@fontsource-variable/montserrat";
 import { GeistMono } from "geist/font/mono";
 import { portfolio } from "@/data/portfolio";
 import "./globals.css";
+import "./sections.css";
 import { IntroLoader } from "@/components/intro-loader";
 
-const title = `${portfolio.name} | Software Developer Portfolio`;
-const description = `Explore the portfolio of ${portfolio.name}, a software developer based in ${portfolio.location}, with experience in Laravel, Flutter, web development, and enterprise application support.`;
+const title = `${portfolio.name} | ${portfolio.headline}`;
+const description = `${portfolio.headline} in ${portfolio.location}. Computer Technology graduate with Flutter, Java, PHP, and Laravel projects, a programming internship, and application support experience.`;
 export const metadata: Metadata = {
   title,
   description,

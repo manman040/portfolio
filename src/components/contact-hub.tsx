@@ -1,15 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import {
-  ArrowDownToLine,
-  ArrowUpRight,
-  Check,
-  Mail,
-  Send,
-  User,
-} from "lucide-react";
-import { Github, Linkedin } from "./brand-icons";
+import { Check, Mail, Send, User } from "lucide-react";
 import { Guestbook } from "./guestbook";
 import { portfolio } from "@/data/portfolio";
 import {
@@ -52,16 +44,9 @@ export function ContactHub() {
   }
 
   return (
-    <div
-      className={`contact-hub ${guestbookEnabled ? "" : "contact-hub-single"}`}
-    >
+    <div className="contact-hub">
       <div className="card contact-form-card">
-        <span className="eyebrow">START A CONVERSATION</span>
-        <h3>Let’s talk.</h3>
-        <p>
-          Have an opportunity, a project idea, or a question? I’d love to hear
-          from you.
-        </p>
+        <h3>Send a message</h3>
         <form
           className="hub-form"
           onSubmit={submit}
@@ -75,7 +60,7 @@ export function ContactHub() {
             <input
               id="contact-name"
               name="name"
-              placeholder="What should I call you?"
+              placeholder="Your full name"
               autoComplete="name"
               required
               maxLength={80}
@@ -98,7 +83,7 @@ export function ContactHub() {
           <textarea
             id="contact-message"
             name="message"
-            placeholder="Tell me what you have in mind…"
+            placeholder="Role, project, or question"
             required
             minLength={5}
             maxLength={3000}
@@ -151,53 +136,6 @@ export function ContactHub() {
             )}
           </div>
         </form>
-        <div className="hub-socials">
-          <h4>Find me online</h4>
-          {portfolio.github && (
-            <a
-              href={portfolio.github}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span className="social-tile-icon">
-                <Github size={23} />
-              </span>
-              <span>
-                <strong>GitHub</strong>
-                <small>manman040</small>
-              </span>
-              <ArrowUpRight size={17} />
-            </a>
-          )}
-          {portfolio.linkedin && (
-            <a
-              href={portfolio.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span className="social-tile-icon">
-                <Linkedin size={22} />
-              </span>
-              <span>
-                <strong>LinkedIn</strong>
-                <small>{portfolio.name}</small>
-              </span>
-              <ArrowUpRight size={17} />
-            </a>
-          )}
-          {portfolio.resume && (
-            <a href={portfolio.resume} download>
-              <span className="social-tile-icon">
-                <ArrowDownToLine size={22} />
-              </span>
-              <span>
-                <strong>Résumé</strong>
-                <small>Get to know my experience</small>
-              </span>
-              <ArrowUpRight size={17} />
-            </a>
-          )}
-        </div>
       </div>
       {guestbookEnabled && <Guestbook />}
     </div>
