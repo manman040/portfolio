@@ -4,7 +4,6 @@ import { GeistMono } from "geist/font/mono";
 import { portfolio } from "@/data/portfolio";
 import "./globals.css";
 import "./sections.css";
-import { IntroLoader } from "@/components/intro-loader";
 
 const title = `${portfolio.name} | ${portfolio.headline}`;
 const description = `${portfolio.headline} in ${portfolio.location}. Computer Technology graduate with Flutter, Java, PHP, and Laravel projects, a programming internship, and application support experience.`;
@@ -44,7 +43,6 @@ export default function RootLayout({
         <a className="skip-link" href="#main">
           Skip to content
         </a>
-        <IntroLoader />
         {children}
       </body>
     </html>
