@@ -9,9 +9,10 @@ export const portfolio = {
   location: "Penang, Malaysia",
   availability: "Open to software development roles",
   intro:
-    "Computer Technology graduate with hands-on experience in mobile and web development using Flutter, Java, PHP, and Laravel, gained through academic projects and a six-month programming internship. I currently support manufacturing applications at Jabil.",
+    "Computer Technology graduate with hands-on experience in native Android development with Java, cross-platform apps with Flutter, and web development with PHP and Laravel, gained through academic projects and a six-month programming internship. I currently support manufacturing applications at Jabil.",
   about: [
     "For my final year project, I independently built an e-hailing app for my college, from the requirements and Figma screens to the Flutter app, Firebase data, and PHP admin panel. During my internship I worked with a development team on Laravel web modules, Flutter mobile modules, REST APIs, and MySQL databases.",
+    "Native Android with Java is an important part of my background. In SteelFit I worked with Android Studio, XML layouts, activities and their lifecycle, navigation between screens, and a SQL Server connection. It’s the area I most want to strengthen, alongside Flutter.",
     "In my current role I support in-house manufacturing applications and troubleshoot station issues on the production floor. I’m looking for a software development role where I can keep developing these skills through practical engineering work.",
   ],
   education: {
@@ -21,7 +22,8 @@ export const portfolio = {
     cgpa: "3.82",
   },
   career: {
-    roles: "Software Developer, Application Developer, Junior Developer, and Programmer",
+    roles:
+      "Junior software developer, Android or mobile application developer, application developer, and graduate software engineer roles",
     workArrangement: "On-site in Penang, or remote",
     notice: "Subject to notice period with current employer",
   },
@@ -39,24 +41,50 @@ export const navigation = [
   "About",
   "Contact",
 ];
-export const skills = [
+export type SkillTrack = {
+  title: string;
+  kind?: "android" | "flutter";
+  items: string[];
+  usedIn: string;
+};
+export type SkillGroup = {
+  title: string;
+  usedIn?: string;
+  items?: string[];
+  tracks?: SkillTrack[];
+};
+export const skills: SkillGroup[] = [
   {
-    title: "Programming languages",
-    usedIn:
-      "Dart in Urban Drive and ReadyTech, PHP in my internship and Urban Drive’s admin panel, Java in SteelFit.",
-    items: ["Dart", "Java", "PHP", "JavaScript", "SQL", "HTML", "CSS"],
+    title: "Mobile development",
+    tracks: [
+      {
+        title: "Native Android",
+        kind: "android",
+        items: ["Java", "Android Studio", "XML Layouts"],
+        usedIn:
+          "SteelFit: Java activities, XML layouts, Intent-based navigation, RecyclerView lists, and SQL Server access through JDBC.",
+      },
+      {
+        title: "Cross-platform",
+        kind: "flutter",
+        items: ["Flutter", "Dart"],
+        usedIn:
+          "Urban Drive, ReadyTech, and the Flutter mobile modules in my internship.",
+      },
+    ],
   },
   {
-    title: "Frameworks & platforms",
+    title: "Web development",
     usedIn:
-      "Flutter in Urban Drive, ReadyTech, and my internship, Laravel in my internship, native Android in SteelFit.",
-    items: ["Flutter", "Laravel", "Android"],
+      "PHP and Laravel in my internship, PHP in Urban Drive’s admin panel.",
+    items: ["PHP", "Laravel", "JavaScript", "HTML", "CSS"],
   },
   {
     title: "Database & backend",
     usedIn:
       "MySQL and REST APIs in my internship, Firebase in Urban Drive, SQL Server in SteelFit, Supabase in ReadyTech.",
     items: [
+      "SQL",
       "MySQL",
       "Microsoft SQL Server",
       "Firebase",
@@ -68,12 +96,11 @@ export const skills = [
   },
   {
     title: "Tools",
-    usedIn: "Git, GitHub, and Figma in my internship, Android Studio in SteelFit.",
+    usedIn: "Git, GitHub, and Figma in my internship.",
     items: [
       "Git",
       "GitHub",
       "VS Code",
-      "Android Studio",
       "Postman",
       "Figma",
       "Composer",

@@ -66,7 +66,10 @@ export function Hero() {
         </div>
         <div>
           <dt>Development</dt>
-          <dd>Six-month programming internship with Laravel and Flutter</dd>
+          <dd>
+            Native Android (Java) and Flutter projects, plus a six-month
+            Laravel and Flutter internship
+          </dd>
         </div>
         <div>
           <dt>Current role</dt>
@@ -194,13 +197,31 @@ export function Skills() {
         description="Technologies I’ve used, and where I used them."
       />
       <div className="skills-grid">
-        {skills.map((group) => (
-          <Reveal className="card skill-card" key={group.title}>
-            <h3>{group.title}</h3>
-            <SkillIcons items={group.items} />
-            <p>{group.usedIn}</p>
-          </Reveal>
-        ))}
+        {skills.map((group) =>
+          group.tracks ? (
+            <Reveal className="card skill-card skill-card-wide" key={group.title}>
+              <h3>{group.title}</h3>
+              <div className="skill-tracks">
+                {group.tracks.map((track) => (
+                  <div
+                    className={`skill-track skill-track-${track.kind}`}
+                    key={track.title}
+                  >
+                    <h4>{track.title}</h4>
+                    <SkillIcons items={track.items} />
+                    <p>{track.usedIn}</p>
+                  </div>
+                ))}
+              </div>
+            </Reveal>
+          ) : (
+            <Reveal className="card skill-card" key={group.title}>
+              <h3>{group.title}</h3>
+              <SkillIcons items={group.items ?? []} />
+              <p>{group.usedIn}</p>
+            </Reveal>
+          ),
+        )}
       </div>
     </section>
   );
@@ -219,7 +240,7 @@ export function About() {
           <dl>
             <div>
               <dt>Looking for</dt>
-              <dd>{career.roles} roles</dd>
+              <dd>{career.roles}</dd>
             </div>
             <div>
               <dt>Work arrangement</dt>

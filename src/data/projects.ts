@@ -246,6 +246,113 @@ export const projects: Project[] = [
     ],
   },
   {
+    id: "steelfit",
+    slug: "steelfit",
+    title: "SteelFit",
+    category: "Native Android · Java · Semester 4 project",
+    statusLabel: "Academic prototype",
+    description:
+      "A native Android gym app built in Android Studio with Java, XML layouts, and SQL Server. It covers login, registration, role-based screens, adding trainers, and browsing a trainer list.",
+    highlights: [
+      "Java activities with XML layouts and Intent-based navigation",
+      "Separate user and admin screens after login",
+      "Trainer list loaded from SQL Server on a background thread",
+    ],
+    stack: ["Java", "Android Studio", "XML layouts", "SQL Server", "JDBC"],
+    github: `${github}/SteelFit`,
+    overview:
+      "SteelFit is a Semester 4 project and my main native Android work: Java activities and XML layouts built in Android Studio, connected to SQL Server.",
+    problem:
+      "A coursework exercise: a mobile interface for finding gym trainers.",
+    objective:
+      "Practise native Android development: activities, screen navigation, list rendering, forms, and database access.",
+    features: [
+      "Splash screen that leads to login.",
+      "Registration and login that check user records in SQL Server.",
+      "Different screens for users and administrators, based on the stored role.",
+      "Bottom navigation between the user home and profile screens.",
+      "Trainer list showing name, age, specialization, experience, and photo.",
+      "Admin form to add a trainer, with a check for existing names.",
+    ],
+    role: "Academic project. This page covers what is in the public Java and layout files.",
+    contributions: [
+      "Java activities and their XML layouts, from the splash screen to the admin forms.",
+      "Navigation between screens with Intents and a bottom navigation bar.",
+      "Login, registration, and add-trainer database operations with prepared statements.",
+      "Trainer list using RecyclerView and a custom adapter.",
+    ],
+    implementation: [
+      {
+        title: "Native Android UI",
+        description:
+          "Java activities with AndroidX, Material components, XML layouts, and RecyclerView, built in Android Studio with Gradle.",
+      },
+      {
+        title: "Navigation and lifecycle",
+        description:
+          "Intents move between activities, and login opens the user or admin screen depending on the stored role. A BottomNavigationView switches between home and profile, and the trainer list reloads in onResume when the screen comes back into view.",
+      },
+      {
+        title: "SQL Server access",
+        description:
+          "Uses the jTDS driver and JDBC prepared statements. BookingActivity loads trainers on a background thread, then updates the list on the UI thread.",
+      },
+      {
+        title: "Trainer photos",
+        description:
+          "BookingAdapter decodes image bytes from the database and shows them in the list.",
+      },
+    ],
+    status: {
+      doneTitle: "Implemented in the public code",
+      done: [
+        "Registration and login",
+        "User and admin navigation",
+        "Trainer list",
+        "Adding a trainer",
+      ],
+      openTitle: "Unfinished in the public code",
+      open: [
+        "Saving a booking",
+        "Viewing bookings (layout only)",
+        "Managing trainers (layout only)",
+        "Saving the selected trainer photo",
+      ],
+      note: "Booking worked in my own copy of the app, but that code isn’t in the public repository, so I don’t list it as implemented here. I don’t have emulator screenshots of the app yet.",
+    },
+    repositories: [
+      {
+        name: "SteelFit",
+        label: "Native Android application",
+        url: `${github}/SteelFit`,
+        description:
+          "Java activities, Android XML layouts, Gradle configuration, and existing project artwork.",
+      },
+    ],
+    sources: [
+      {
+        label: "Android dependencies",
+        url: `${github}/SteelFit/blob/master/app/build.gradle`,
+      },
+      {
+        label: "User screen and bottom navigation",
+        url: `${github}/SteelFit/blob/master/app/src/main/java/com/kelasandroidappsirhafizee/steelfit/UserInterface.java`,
+      },
+      {
+        label: "Trainer retrieval",
+        url: `${github}/SteelFit/blob/master/app/src/main/java/com/kelasandroidappsirhafizee/steelfit/BookingActivity.java`,
+      },
+      {
+        label: "Trainer adapter",
+        url: `${github}/SteelFit/blob/master/app/src/main/java/com/kelasandroidappsirhafizee/steelfit/BookingAdapter.java`,
+      },
+      {
+        label: "Booking screen scope",
+        url: `${github}/SteelFit/blob/master/app/src/main/java/com/kelasandroidappsirhafizee/steelfit/ViewBooking.java`,
+      },
+    ],
+  },
+  {
     id: "readytech",
     slug: "readytech",
     title: "ReadyTech",
@@ -355,101 +462,6 @@ export const projects: Project[] = [
       {
         label: "Technician admin actions",
         url: `${github}/readytech/blob/main/admin/src/app/(console)/technicians/actions.ts`,
-      },
-    ],
-  },
-  {
-    id: "steelfit",
-    slug: "steelfit",
-    title: "SteelFit",
-    category: "Semester 4 project · Native Android",
-    statusLabel: "Academic prototype",
-    description:
-      "A native Android gym app written in Java with XML layouts and SQL Server. It covers login, registration, adding trainers, and browsing a trainer list.",
-    highlights: [
-      "Login with separate user and admin screens",
-      "Trainer list loaded from SQL Server on a background thread",
-      "Add-trainer form with a duplicate-name check",
-    ],
-    stack: ["Java", "Android", "XML layouts", "SQL Server", "JDBC"],
-    github: `${github}/SteelFit`,
-    overview:
-      "SteelFit is a Semester 4 project built with native Android activities and XML layouts, connected to SQL Server.",
-    problem:
-      "A coursework exercise: a mobile interface for finding gym trainers.",
-    objective:
-      "Practise native Android development: screen navigation, list rendering, forms, and database access.",
-    features: [
-      "Registration and login that check user records in SQL Server.",
-      "Different screens for users and administrators, based on the stored role.",
-      "Trainer list showing name, age, specialization, experience, and photo.",
-      "Admin form to add a trainer, with a check for existing names.",
-    ],
-    role: "Academic project. This page covers what is in the public Java and layout files.",
-    contributions: [
-      "Java activities and XML layouts.",
-      "Login, registration, and add-trainer database operations with prepared statements.",
-      "Trainer list using RecyclerView and a custom adapter.",
-    ],
-    implementation: [
-      {
-        title: "Native Android UI",
-        description:
-          "Java activities with AndroidX, Material components, XML layouts, and RecyclerView.",
-      },
-      {
-        title: "SQL Server access",
-        description:
-          "Uses the jTDS driver and JDBC prepared statements. BookingActivity loads trainers on a background thread, then updates the list on the UI thread.",
-      },
-      {
-        title: "Trainer photos",
-        description:
-          "BookingAdapter decodes image bytes from the database and shows them in the list.",
-      },
-    ],
-    status: {
-      doneTitle: "Implemented in the public code",
-      done: [
-        "Registration and login",
-        "User and admin navigation",
-        "Trainer list",
-        "Adding a trainer",
-      ],
-      openTitle: "Unfinished in the public code",
-      open: [
-        "Saving a booking",
-        "Viewing bookings (layout only)",
-        "Managing trainers (layout only)",
-        "Saving the selected trainer photo",
-      ],
-      note: "Booking worked in my own copy of the app, but that code isn’t in the public repository, so I don’t list it as implemented here. I don’t have screenshots of the app.",
-    },
-    repositories: [
-      {
-        name: "SteelFit",
-        label: "Native Android application",
-        url: `${github}/SteelFit`,
-        description:
-          "Java activities, Android XML layouts, Gradle configuration, and existing project artwork.",
-      },
-    ],
-    sources: [
-      {
-        label: "Android dependencies",
-        url: `${github}/SteelFit/blob/master/app/build.gradle`,
-      },
-      {
-        label: "Trainer retrieval",
-        url: `${github}/SteelFit/blob/master/app/src/main/java/com/kelasandroidappsirhafizee/steelfit/BookingActivity.java`,
-      },
-      {
-        label: "Trainer adapter",
-        url: `${github}/SteelFit/blob/master/app/src/main/java/com/kelasandroidappsirhafizee/steelfit/BookingAdapter.java`,
-      },
-      {
-        label: "Booking screen scope",
-        url: `${github}/SteelFit/blob/master/app/src/main/java/com/kelasandroidappsirhafizee/steelfit/ViewBooking.java`,
       },
     ],
   },

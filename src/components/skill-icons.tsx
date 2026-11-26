@@ -2,6 +2,7 @@ import Image from "next/image";
 import {
   Code2,
   Database,
+  LayoutTemplate,
   Network,
   ShieldCheck,
   Workflow,
@@ -38,6 +39,7 @@ const logos: Record<string, string> = {
 // Skills without a brand logo.
 const symbols: Record<string, LucideIcon> = {
   SQL: Database,
+  "XML Layouts": LayoutTemplate,
   "REST APIs": Network,
   RBAC: ShieldCheck,
   "Database design": Workflow,

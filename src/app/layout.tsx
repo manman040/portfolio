@@ -7,7 +7,7 @@ import "./globals.css";
 import "./sections.css";
 
 const title = `${portfolio.name} | ${portfolio.headline}`;
-const description = `${portfolio.headline} in ${portfolio.location}. Computer Technology graduate with Flutter, Java, PHP, and Laravel projects, a programming internship, and application support experience.`;
+const description = `${portfolio.headline} in ${portfolio.location}. Computer Technology graduate with native Android (Java), Flutter, PHP, and Laravel projects, a programming internship, and application support experience.`;
 export const metadata: Metadata = {
   title,
   description,

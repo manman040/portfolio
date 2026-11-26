@@ -16,7 +16,10 @@ export function ProfileSchema() {
         "@type": "EducationalOrganization",
         name: portfolio.education.institution,
       },
-      knowsAbout: skills.flatMap((group) => group.items),
+      knowsAbout: skills.flatMap((group) => [
+        ...(group.items ?? []),
+        ...(group.tracks ?? []).flatMap((track) => track.items),
+      ]),
       sameAs: [portfolio.github, portfolio.linkedin].filter(Boolean),
     },
   };
